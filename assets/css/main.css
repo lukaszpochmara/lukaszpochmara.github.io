@@ -1399,7 +1399,7 @@ section,
   width: 600px; /* Ustaw szerokość */
   height: 450px; /* Ustaw wysokość */
   object-fit: cover; /* Dopasowanie obrazu */
-  border-radius: 80%; /* Zapewnia idealny kształt koła */
+  border-radius: 100%; /* Zapewnia idealny kształt koła */
   border: 5px solid #ddd; /* Dodaje obramowanie */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Dodaje delikatny cień */
 }

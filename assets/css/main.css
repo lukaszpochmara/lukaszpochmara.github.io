@@ -76,7 +76,27 @@ h6 {
   color: var(--heading-color);
   font-family: var(--heading-font);
 }
+<style>
+#hero {
+  position: relative;
+}
 
+#hero .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.5); /* White with 50% opacity */
+  backdrop-filter: blur(1px); /* Blur effect */
+  z-index: 1;
+}
+
+#hero .container {
+  position: relative;
+  z-index: 2; /* Ensure content is above the overlay */
+}
+</style>
 /* PHP Email Form Messages
 ------------------------------*/
 .php-email-form .error-message {
@@ -547,11 +567,11 @@ section,
 
 .hero p {
   margin: 5px 0 0 0;
-  font-size: 26px;
+  font-size: 40px;
 }
 
 .hero p span {
-  letter-spacing: 1px;
+  letter-spacing: 11px;
   border-bottom: 2px solid var(--accent-color);
 }
 

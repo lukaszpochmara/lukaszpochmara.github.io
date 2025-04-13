@@ -1397,7 +1397,7 @@ section,
   line-height: 1.5;
 }img.rounded-circle {
   width: 600px; /* Ustaw szerokość */
-  height: 450px; /* Ustaw wysokość */
+  height: 300px; /* Ustaw wysokość */
   object-fit: cover; /* Dopasowanie obrazu */
   border-radius: 100%; /* Zapewnia idealny kształt koła */
   border: 5px solid #ddd; /* Dodaje obramowanie */

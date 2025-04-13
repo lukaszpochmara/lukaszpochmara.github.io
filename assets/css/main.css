@@ -1395,6 +1395,13 @@ section,
   margin-bottom: 10px;
   font-size: 16px;
   line-height: 1.5;
+}img.rounded-circle {
+  width: 600px; /* Ustaw szerokość */
+  height: 500px; /* Ustaw wysokość */
+  object-fit: cover; /* Dopasowanie obrazu */
+  border-radius: 80%; /* Zapewnia idealny kształt koła */
+  border: 5px solid #ddd; /* Dodaje obramowanie */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Dodaje delikatny cień */
 }
 /*--------------------------------------------------------------
 # Starter Section Section

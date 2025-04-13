@@ -1373,7 +1373,29 @@ section,
   margin-right: 8px;
   color: var(--accent-color);
 }
+/*--------------------------------------------------------------
+# Analityka Danych Section
+--------------------------------------------------------------*/
+.analityka-danych {
+  padding: 60px 0;
+}
 
+.analityka-danych h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.analityka-danych ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.analityka-danych ul li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+}
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/

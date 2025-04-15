@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('assets/snake.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header, footer {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 10px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for content */
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        pre {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        footer p {
+            text-align: center;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Data Analytics Project</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/analityka">Data Analytics</a></li>
+                <li><a href="/python-development">Python Development</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Why Python is Essential in Data Analytics</h2>
+            <p>Python has become the cornerstone of modern data analytics, offering unique advantages that make it indispensable for data scientists and analysts.</p>
+        </section>
+        <section>
+            <h3>1. Rich Ecosystem of Libraries</h3>
+            <p>Python provides powerful libraries specifically designed for data analysis:</p>
+            <ul>
+            <li>Pandas - for data manipulation and analysis</li>
+            <li>NumPy - for numerical computing</li>
+            <li>Matplotlib/Seaborn - for data visualization</li>
+            <li>Scikit-learn - for machine learning</li>
+            </ul>
+        </section>
+        <section>
+            <h3>2. Ease of Use</h3>
+            <p>Python's advantages in data analytics include:</p>
+            <ul>
+            <li>Simple and readable syntax</li>
+            <li>Quick prototyping capabilities</li>
+            <li>Large community support</li>
+            <li>Extensive documentation</li>
+            </ul>
+        </section>
+        <section>
+            <h3>3. Industry Standard</h3>
+            <p>Python is widely adopted in data analytics because:</p>
+            <ul>
+            <li>It's used by major tech companies</li>
+            <li>Supports big data processing</li>
+            <li>Integrates well with other tools</li>
+            <li>Has excellent IDE support</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Example Python Analytics Code</h3>
+            <pre>
+            <code>
+    # Basic data analysis example
+    import pandas as pd
+    import matplotlib.pyplot as plt
+
+    # Load and analyze data
+    data = pd.read_csv('sales_data.csv')
+    sales_by_month = data.groupby('month')['sales'].sum()
+
+    # Create visualization
+    plt.plot(sales_by_month)
+    plt.title('Monthly Sales Analysis')
+    plt.show()
+                </code>
+            </pre>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; Łukasz Pochmara. All rights reserved.</p>
+    </footer>
+</body>
+</html>

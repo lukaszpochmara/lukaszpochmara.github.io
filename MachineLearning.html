@@ -1,154 +1,260 @@
 <!DOCTYPE html>
-<html lang="pl"></html>
+<html lang="pl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Machine Learning Animation</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            height: 100%;
-            background: linear-gradient(135deg, #354e72, #06172c);
-            color: white;
-            font-family: sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Machine Learning Animation</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      height: 100%;
+      scroll-behavior: smooth;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: rgba(6, 23, 44, 0.9);
+      color: white;
+    }
 
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            opacity: 0.95; /* Jeszcze bardziej widoczna sieć */
-        }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      opacity: 0.95;
+    }
 
-        .content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            top: 40%;
-            transform: translateY(-50%);
-        }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.4);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 2;
+    }
 
-        h1 {
-            font-size: 3rem;
-            color: #00ffcc;
-            text-shadow: 0 0 15px #00ffcc;
-        }
-    </style>
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #00ffcc;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00ffcc;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding-top: 120px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 4rem;
+      color: #00ffcc;
+      text-shadow: 0 0 15px #00ffcc;
+      margin-bottom: 40px;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #FFD700;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.3);
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-    <canvas id="bg"></canvas>
-    <div class="content">
-        <h1>Machine Learning</h1>
-    </div>
-    <script>
-        const canvas = document.getElementById('bg');
-        const ctx = canvas.getContext('2d');
+  <canvas id="bg"></canvas>
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
+  <header>
+    <div class="logo">🤖 AI Power</div>
+    <nav>
+      <a href="#about">O projekcie</a>
+      <a href="#tech">Technologie</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+  </header>
 
-        // Zwiększona liczba warstw i neuronów
-        const LAYERS = 5;
-        const NEURONS_PER_LAYER = 7;
-        const NEURON_RADIUS = 28; // Większe neurony
-        const SIGNAL_SPEED = 2.5;
+  <div class="content">
+    <h1>Machine Learning</h1>
+  </div>
 
-        const neurons = [];
-        for (let layer = 0; layer < LAYERS; layer++) {
-            for (let i = 0; i < NEURONS_PER_LAYER; i++) {
-                neurons.push({
-                    x: (layer + 1) * canvas.width / (LAYERS + 1),
-                    y: (i + 1) * canvas.height / (NEURONS_PER_LAYER + 1),
-                    layer: layer
-                });
-            }
-        }
+  <section id="about">
+    <h2>O projekcie</h2>
+    <p>
+      Ta strona prezentuje wizualizację działania sztucznej inteligencji poprzez interaktywną animację sieci neuronowej. 
+      Projekt powstał z pasji do uczenia maszynowego oraz chęci pokazania piękna działania algorytmów w nowoczesnej formie.
+    </p>
+  </section>
 
-        let signals = [];
+  <section id="tech">
+    <h2>Technologie</h2>
+    <p>
+      Projekt został stworzony przy użyciu czystego HTML, CSS i JavaScript. Animacja przedstawiająca neurony i przepływające sygnały 
+      imituje działanie sieci neuronowej. Całość osadzona jest w stylu futurystycznym, z myślą o projektach opartych na sztucznej inteligencji.
+    </p>
+  </section>
 
-        function createSignal() {
-            const fromLayer = Math.floor(Math.random() * (LAYERS - 1));
-            const fromNeuron = neurons.filter(n => n.layer === fromLayer)[Math.floor(Math.random() * NEURONS_PER_LAYER)];
-            const toNeuron = neurons.filter(n => n.layer === fromLayer + 1)[Math.floor(Math.random() * NEURONS_PER_LAYER)];
-            
-            signals.push({
-                x: fromNeuron.x,
-                y: fromNeuron.y,
-                targetX: toNeuron.x,
-                targetY: toNeuron.y,
-                progress: 0
+  <section id="contact">
+    <h2>Kontakt</h2>
+    <p>
+      Masz pytania lub chcesz porozmawiać o AI? Skontaktuj się: <br />
+      <a href="mailto:twojemail@example.com" style="color:#00ffcc;">twojemail@example.com</a>
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Łukasz AI Project. All rights reserved.
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const neurons = [];
+    // Liczba warstw w sieci neuronowej - możesz zmienić, aby zwiększyć lub zmniejszyć złożoność
+    const LAYERS = 5;  
+
+    // Liczba neuronów w każdej warstwie - możesz zmodyfikować, aby zmienić kształt sieci
+    const NEURONS_PER_LAYER = [8, 12, 15, 12, 8];  
+
+    // Promień rysowanych neuronów - zmień, aby dostosować ich wielkość
+    const NEURON_RADIUS = 15;
+
+    // Prędkość sygnałów - zmień, aby przyspieszyć lub spowolnić animację
+    const SIGNAL_SPEED = 1.5;
+
+    // Tworzenie neuronów w bardziej organicznym układzie
+    for (let layer = 0; layer < LAYERS; layer++) {
+        const neuronsInLayer = NEURONS_PER_LAYER[layer];
+        for (let i = 0; i < neuronsInLayer; i++) {
+            // Offset tworzy falisty wzór - możesz zmodyfikować funkcję Math.sin, aby zmienić efekt
+            const offset = Math.sin(i * 0.5) * 50; 
+            neurons.push({
+                x: (layer + 1) * canvas.width / (LAYERS + 1) + Math.random() * 20 - 10, // Pozycja X
+                y: (i + 1) * canvas.height / (neuronsInLayer + 1) + offset, // Pozycja Y
+                layer: layer,
+                pulsePhase: Math.random() * Math.PI * 2 // Faza pulsowania
             });
         }
+    }
 
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let signals = [];
 
-            // Połączenia
-            for (let i = 0; i < neurons.length; i++) {
-                const neuron = neurons[i];
-                if (neuron.layer < LAYERS - 1) {
-                    const nextLayer = neurons.filter(n => n.layer === neuron.layer + 1);
-                    for (const target of nextLayer) {
-                        ctx.beginPath();
-                        ctx.moveTo(neuron.x, neuron.y);
-                        ctx.lineTo(target.x, target.y);
-                        ctx.strokeStyle = 'rgba(255, 255, 0, 1)'; // Maksymalna widoczność
-                        ctx.lineWidth = 8; // Jeszcze grubsze linie
-                        ctx.shadowColor = '#FFFF66';
-                        ctx.shadowBlur = 18;
-                        ctx.stroke();
-                        ctx.shadowBlur = 0;
-                    }
+    // Funkcja tworząca sygnały między neuronami - możesz zmienić kolory lub logikę wyboru neuronów
+    function createSignal() {
+        const fromLayer = Math.floor(Math.random() * (LAYERS - 1));
+        const fromNeuron = neurons.filter(n => n.layer === fromLayer)[Math.floor(Math.random() * NEURONS_PER_LAYER[fromLayer])];
+        const toNeuron = neurons.filter(n => n.layer === fromLayer + 1)[Math.floor(Math.random() * NEURONS_PER_LAYER[fromLayer + 1])];
+        signals.push({
+            x: fromNeuron.x,
+            y: fromNeuron.y,
+            targetX: toNeuron.x,
+            targetY: toNeuron.y,
+            progress: 0,
+            color: `hsl(${Math.random() * 60 + 180}, 100%, 50%)`  // Kolory sygnałów (od niebieskiego do cyjanowego)
+        });
+    }
+
+    // Funkcja rysująca całą animację
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Czyszczenie płótna
+
+        // Rysowanie połączeń między neuronami
+        for (let i = 0; i < neurons.length; i++) {
+            const neuron = neurons[i];
+            if (neuron.layer < LAYERS - 1) {
+                const nextLayer = neurons.filter(n => n.layer === neuron.layer + 1);
+                for (const target of nextLayer) {
+                    const gradient = ctx.createLinearGradient(neuron.x, neuron.y, target.x, target.y);
+                    gradient.addColorStop(0, 'rgba(0, 255, 255, 0.1)');
+                    gradient.addColorStop(1, 'rgba(0, 128, 255, 0.1)');
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(neuron.x, neuron.y);
+                    ctx.lineTo(target.x, target.y);
+                    ctx.strokeStyle = gradient; // Styl połączeń
+                    ctx.lineWidth = 1; // Grubość linii
+                    ctx.stroke();
                 }
             }
-
-            // Neurony
-            for (const neuron of neurons) {
-                ctx.beginPath();
-                ctx.arc(neuron.x, neuron.y, NEURON_RADIUS, 0, Math.PI * 2);
-                ctx.fillStyle = '#FFFF00'; // Bardzo jasny żółty
-                ctx.shadowColor = '#FFD700';
-                ctx.shadowBlur = 40; // Jeszcze większy cień
-                ctx.fill();
-                ctx.lineWidth = 6;
-                ctx.strokeStyle = '#FFD700';
-                ctx.stroke();
-                ctx.shadowBlur = 0;
-            }
-
-            // Sygnały
-            signals = signals.filter(signal => signal.progress <= 1);
-            for (const signal of signals) {
-                signal.progress += 0.012 * SIGNAL_SPEED;
-                const x = signal.x + (signal.targetX - signal.x) * signal.progress;
-                const y = signal.y + (signal.targetY - signal.y) * signal.progress;
-
-                ctx.beginPath();
-                ctx.arc(x, y, 12, 0, Math.PI * 2); // Większy sygnał
-                ctx.fillStyle = '#FF2222';
-                ctx.shadowColor = '#FF6600';
-                ctx.shadowBlur = 30;
-                ctx.fill();
-                ctx.shadowBlur = 0;
-            }
-
-            // Więcej sygnałów
-            if (Math.random() < 0.15) createSignal();
-
-            requestAnimationFrame(draw)
         }
 
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-        });
+        // Rysowanie neuronów z efektem pulsowania
+        for (const neuron of neurons) {
+            neuron.pulsePhase += 0.05; // Szybkość pulsowania - możesz zmienić wartość
+            const pulseSize = Math.sin(neuron.pulsePhase) * 2; // Wielkość pulsowania
+            
+            ctx.beginPath();
+            ctx.arc(neuron.x, neuron.y, NEURON_RADIUS + pulseSize, 0, Math.PI * 2);
+            ctx.fillStyle = '#00FFFF'; // Kolor neuronów
+            ctx.shadowColor = '#00FFFF'; // Efekt świetlny
+            ctx.shadowBlur = 15; // Intensywność efektu świetlnego
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
 
-        draw();
-    </script>
+        // Aktualizacja i rysowanie sygnałów
+        signals = signals.filter(signal => signal.progress <= 1); // Usuwanie zakończonych sygnałów
+        for (const signal of signals) {
+            signal.progress += 0.01 * SIGNAL_SPEED; // Postęp sygnału
+            const x = signal.x + (signal.targetX - signal.x) * signal.progress;
+            const y = signal.y + (signal.targetY - signal.y) * signal.progress;
+
+            ctx.beginPath();
+            ctx.arc(x, y, 3, 0, Math.PI * 2);
+            ctx.fillStyle = signal.color; // Kolor sygnału
+            ctx.shadowColor = signal.color; // Efekt świetlny sygnału
+            ctx.shadowBlur = 10;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+
+        // Losowe tworzenie nowych sygnałów
+        if (Math.random() < 0.1) createSignal();
+
+        requestAnimationFrame(draw); // Kontynuacja animacji
+    }
+
+    draw();
+  </script>
 </body>
 </html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pl"></html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Machine Learning Animation</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            background: linear-gradient(135deg, #354e72, #06172c);
+            color: white;
+            font-family: sans-serif;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.95; /* Jeszcze bardziej widoczna sieć */
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            top: 40%;
+            transform: translateY(-50%);
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #00ffcc;
+            text-shadow: 0 0 15px #00ffcc;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg"></canvas>
+    <div class="content">
+        <h1>Machine Learning</h1>
+    </div>
+    <script>
+        const canvas = document.getElementById('bg');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+
+        // Zwiększona liczba warstw i neuronów
+        const LAYERS = 5;
+        const NEURONS_PER_LAYER = 7;
+        const NEURON_RADIUS = 28; // Większe neurony
+        const SIGNAL_SPEED = 2.5;
+
+        const neurons = [];
+        for (let layer = 0; layer < LAYERS; layer++) {
+            for (let i = 0; i < NEURONS_PER_LAYER; i++) {
+                neurons.push({
+                    x: (layer + 1) * canvas.width / (LAYERS + 1),
+                    y: (i + 1) * canvas.height / (NEURONS_PER_LAYER + 1),
+                    layer: layer
+                });
+            }
+        }
+
+        let signals = [];
+
+        function createSignal() {
+            const fromLayer = Math.floor(Math.random() * (LAYERS - 1));
+            const fromNeuron = neurons.filter(n => n.layer === fromLayer)[Math.floor(Math.random() * NEURONS_PER_LAYER)];
+            const toNeuron = neurons.filter(n => n.layer === fromLayer + 1)[Math.floor(Math.random() * NEURONS_PER_LAYER)];
+            
+            signals.push({
+                x: fromNeuron.x,
+                y: fromNeuron.y,
+                targetX: toNeuron.x,
+                targetY: toNeuron.y,
+                progress: 0
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Połączenia
+            for (let i = 0; i < neurons.length; i++) {
+                const neuron = neurons[i];
+                if (neuron.layer < LAYERS - 1) {
+                    const nextLayer = neurons.filter(n => n.layer === neuron.layer + 1);
+                    for (const target of nextLayer) {
+                        ctx.beginPath();
+                        ctx.moveTo(neuron.x, neuron.y);
+                        ctx.lineTo(target.x, target.y);
+                        ctx.strokeStyle = 'rgba(255, 255, 0, 1)'; // Maksymalna widoczność
+                        ctx.lineWidth = 8; // Jeszcze grubsze linie
+                        ctx.shadowColor = '#FFFF66';
+                        ctx.shadowBlur = 18;
+                        ctx.stroke();
+                        ctx.shadowBlur = 0;
+                    }
+                }
+            }
+
+            // Neurony
+            for (const neuron of neurons) {
+                ctx.beginPath();
+                ctx.arc(neuron.x, neuron.y, NEURON_RADIUS, 0, Math.PI * 2);
+                ctx.fillStyle = '#FFFF00'; // Bardzo jasny żółty
+                ctx.shadowColor = '#FFD700';
+                ctx.shadowBlur = 40; // Jeszcze większy cień
+                ctx.fill();
+                ctx.lineWidth = 6;
+                ctx.strokeStyle = '#FFD700';
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+            }
+
+            // Sygnały
+            signals = signals.filter(signal => signal.progress <= 1);
+            for (const signal of signals) {
+                signal.progress += 0.012 * SIGNAL_SPEED;
+                const x = signal.x + (signal.targetX - signal.x) * signal.progress;
+                const y = signal.y + (signal.targetY - signal.y) * signal.progress;
+
+                ctx.beginPath();
+                ctx.arc(x, y, 12, 0, Math.PI * 2); // Większy sygnał
+                ctx.fillStyle = '#FF2222';
+                ctx.shadowColor = '#FF6600';
+                ctx.shadowBlur = 30;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+
+            // Więcej sygnałów
+            if (Math.random() < 0.15) createSignal();
+
+            requestAnimationFrame(draw)
+        }
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+        });
+
+        draw();
+    </script>
+</body>
+</html>

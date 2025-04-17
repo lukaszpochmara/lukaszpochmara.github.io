@@ -86,8 +86,8 @@
       <div class="row gy-4 align-items-center"></div>
         <!-- PROFILE PICTURE -->
         <div class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
-          <div style="border: 6px solid #0A66C2; border-radius: 50%; padding: 8px; background: #fff; box-shadow: 0 4px 24px rgba(10,102,194,0.10); max-width: 260px;">
-            <img src="assets/img/1.png" class="img-fluid rounded-circle shadow" alt="PROFILE PICTURE" style="width: 220px; height: 220px; object-fit: cover;">
+          <div class="profile-picture-wrapper bg-white rounded-circle shadow p-2" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); max-width: 230px;">
+            <img src="assets/img/1.png" class="img-fluid rounded-circle shadow" alt="Profile Picture" style="width: 230px; height: 240px; object-fit: cover; border: 4px solid #fff;">
           </div>
         </div>
         <!-- ABOUT ME CONTENT -->
@@ -125,75 +125,134 @@
               Competencies and Skills
             </h4>
             
-            </style>
-            <div class="skill-section mb-3 d-flex align-items-start">
-              <i class="bi bi-code-square text-primary fs-3 me-3 mt-1"></i>
-              <div>
-              <h5>Python Programming</h5>
-              <p>Proficient in Python and its data analysis and machine learning libraries, including Pandas, NumPy, Keras, and TensorFlow, enabling efficient data processing and model implementation.</p>
-              </div>
-            </div>
+            <style>
+              .neon-icon {
+                color: #00fff7;
+                text-shadow:
+                  0 0 8px #00fff7,
+                  0 0 16px #00c3ff,
+                  0 0 32px #00fff7;
+                transition: transform 0.2s cubic-bezier(.4,2,.6,1), text-shadow 0.2s;
+                font-size: 2.1rem;
+                margin-right: 1.1rem;
+                border-radius: 50%;
+                background: rgba(0, 38, 255, 0.10);
+                padding: 0.5rem;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow:
+                  0 0 12px #1a6cff,
+                  0 0 24px #1a6cff33;
+                transition: transform 0.22s cubic-bezier(.4,2,.6,1), box-shadow 0.22s, text-shadow 0.22s;
+                text-shadow:
+                  0 0 6px #1a6cff,
+                  0 0 12px #1a6cff99;
+                }
+                .neon-icon:hover {
+                transform: scale(1.22);
+                box-shadow:
+                  0 0 32px #1a6cff,
+                  0 0 64px #1a6cff66;
+                text-shadow:
+                  0 0 18px #fff,
+                  0 0 36px #1a6cff,
+                  0 0 72px #1a6cff;
+                background: rgba(0, 38, 255, 0.18);
+                z-index: 2;
+                }
+                .skill-section {
+                background: #f7faff;
+                border-radius: 1.2rem;
+                box-shadow: 0 2px 16px rgba(26,108,255,0.07);
+                padding: 1.1rem 1.5rem;
+                margin-bottom: 1.2rem;
+                display: flex;
+                align-items: flex-start;
+                transition: box-shadow 0.2s;
+                }
+                .skill-section:hover {
+                box-shadow: 0 4px 32px #1a6cff22, 0 2px 16px rgba(0,0,0,0.09);
+                }
+                .skill-section h5 {
+                font-family: 'Poppins', sans-serif;
+                font-weight: 600;
+                font-size: 1.18rem;
+                margin-bottom: 0.3rem;
+                color: #1a237e;
+                letter-spacing: 0.5px;
+                }
+                .skill-section p {
+                font-family: 'Raleway', sans-serif;
+                font-size: 1rem;
+                color: #263238;
+                margin-bottom: 0;
+                }
+              </style>
 
-            <div class="skill-section mb-3 d-flex align-items-start">
-              <i class="bi bi-database text-primary fs-3 me-3 mt-1"></i>
-              <div>
-              <h5>Big Data Processing</h5>
-              <p>Skilled in handling and analyzing large datasets using technologies such as Apache Hadoop and Apache Spark, with experience in both programming (MapReduce) and analytical tools (Pig, Hive), as well as administrative tasks.</p>
+              <div class="skill-section mb-3">
+                <i class="bi bi-code-square neon-icon"></i>
+                <div>
+                <h5>Python Programming</h5>
+                <p>Proficient in Python and its data analysis and machine learning libraries, including Pandas, NumPy, Keras, and TensorFlow, enabling efficient data processing and model implementation.</p>
+                </div>
               </div>
-            </div>
 
-            <div class="skill-section mb-3 d-flex align-items-start">
-              <i class="bi bi-hdd-network text-primary fs-3 me-3 mt-1"></i>
-              <div>
-              <h5>NoSQL Databases</h5>
-              <p>Knowledge of NoSQL databases like Cassandra and MongoDB, and the ability to integrate them into Big Data projects.</p>
+              <div class="skill-section mb-3">
+                <i class="bi bi-database neon-icon"></i>
+                <div>
+                <h5>Big Data Processing</h5>
+                <p>Skilled in handling and analyzing large datasets using technologies such as Apache Hadoop and Apache Spark, with experience in both programming (MapReduce) and analytical tools (Pig, Hive), as well as administrative tasks.</p>
+                </div>
               </div>
-            </div>
 
-            <div class="skill-section mb-3 d-flex align-items-start">
-              <i class="bi bi-lightning text-primary fs-3 me-3 mt-1"></i>
-              <div>
-              <h5>Stream Processing</h5>
-              <p>Experience in processing real-time data streams using tools like Apache Kafka and Apache Flink.</p>
+              <div class="skill-section mb-3">
+                <i class="bi bi-hdd-network neon-icon"></i>
+                <div>
+                <h5>NoSQL Databases</h5>
+                <p>Knowledge of NoSQL databases like Cassandra and MongoDB, and the ability to integrate them into Big Data projects.</p>
+                </div>
               </div>
-            </div>
 
-            <div class="skill-section mb-3 d-flex align-items-start">
-              <i class="bi bi-cpu text-primary fs-3 me-3 mt-1"></i>
-              <div>
-              <h5>Machine Learning and Artificial Intelligence</h5>
-              <p>Ability to design, train, and evaluate machine learning models, including neural networks, and apply them in data analysis tasks.</p>
+              <div class="skill-section mb-3">
+                <i class="bi bi-lightning neon-icon"></i>
+                <div>
+                <h5>Stream Processing</h5>
+                <p>Experience in processing real-time data streams using tools like Apache Kafka and Apache Flink.</p>
+                </div>
               </div>
-            </div>
 
-            <div class="skill-section mb-3 d-flex align-items-start">
-              <i class="bi bi-bar-chart text-primary fs-3 me-3 mt-1"></i>
-              <div>
-              <h5>Data Visualization</h5>
-              <p>Capable of creating clear and effective data visualizations using tools such as Power BI to support data-driven decision-making.</p>
+              <div class="skill-section mb-3">
+                <i class="bi bi-cpu neon-icon"></i>
+                <div>
+                <h5>Machine Learning and Artificial Intelligence</h5>
+                <p>Ability to design, train, and evaluate machine learning models, including neural networks, and apply them in data analysis tasks.</p>
+                </div>
               </div>
-            </div>
 
-            <div class="skill-section mb-3 d-flex align-items-start">
-              <i class="bi bi-cloud text-primary fs-3 me-3 mt-1"></i>
-              <div>
-              <h5>Cloud Computing</h5>
-              <p>Hands-on experience with cloud platforms such as AWS and Microsoft Azure, and the ability to design cloud-based architectures for Big Data solutions.</p>
+              <div class="skill-section mb-3">
+                <i class="bi bi-bar-chart neon-icon"></i>
+                <div>
+                <h5>Data Visualization</h5>
+                <p>Capable of creating clear and effective data visualizations using tools such as Power BI to support data-driven decision-making.</p>
+                </div>
               </div>
-            </div>
 
-            <div class="skill-section mb-3 d-flex align-items-start">
-              <i class="bi bi-diagram-3 text-primary fs-3 me-3 mt-1"></i>
-              <div>
-              <h5>Data Science Project Management</h5>
-              <p>Experience leading Data Science projects, managing R&D teams, and implementing cutting-edge solutions, including language models (LLMs) and RAG-based chatbots.</p>
+              <div class="skill-section mb-3">
+                <i class="bi bi-cloud neon-icon"></i>
+                <div>
+                <h5>Cloud Computing</h5>
+                <p>Hands-on experience with cloud platforms such as AWS and Microsoft Azure, and the ability to design cloud-based architectures for Big Data solutions.</p>
+                </div>
               </div>
-            </div>
-            </div>
-          </p>
-          </div>
-            </div>
-            </div>
+
+              <div class="skill-section mb-3">
+                <i class="bi bi-diagram-3 neon-icon"></i>
+                <div>
+                <h5>Data Science Project Management</h5>
+                <p>Experience leading Data Science projects, managing R&D teams, and implementing cutting-edge solutions, including language models (LLMs) and RAG-based chatbots.</p>
+                </div>
+              </div>
           </section><!-- /ABOUT SECTION -->
 
     <!-- Stats Section -->
@@ -322,7 +381,24 @@
     <section id="contact" class="contact section">
       <div class="container section-title" data-aos="fade-up">
         <h2>Kontakt</h2>
-        <p>Skontaktuj się ze mną, aby omówić współpracę lub projekty.</p>
+        <p class="typed-message" data-typed-message="Skontaktuj się ze mną, aby omówić współpracę lub projekty."></p>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            // Add CSS style for larger text
+            document.querySelector('.typed-message').style.fontSize = '1.2rem';
+            
+            new Typed('.typed-message', {
+              strings: ['Skontaktuj się ze mną, aby omówić współpracę lub projekty.', ''],
+              typeSpeed: 50,
+              backSpeed: 30,
+              loop: true,
+              showCursor: true,
+              cursorChar: '|',
+              backDelay: 2000,
+              startDelay: 1000
+            });
+          });
+        </script>
       </div>
       <div class="container" data-aos="fade" data-aos-delay="100">
         <div class="row gy-4">

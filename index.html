@@ -118,7 +118,49 @@
           </div>
         </div>
         <p class="py-3" style="font-family: 'Raleway', sans-serif;">
-          I am passionate about data analysis, machine learning, and creating solutions that bring real business value. I eagerly take on new challenges and continuously develop my skills in Data Science and Big Data.
+          <div class="competencies">
+            <h4 class="mb-4">Competencies and Skills</h4>
+
+            <div class="skill-section mb-3">
+              <h5>Python Programming</h5>
+              <p>Proficient in Python and its data analysis and machine learning libraries, including Pandas, NumPy, Keras, and TensorFlow, enabling efficient data processing and model implementation.</p>
+            </div>
+
+            <div class="skill-section mb-3">
+              <h5>Big Data Processing</h5>
+              <p>Skilled in handling and analyzing large datasets using technologies such as Apache Hadoop and Apache Spark, with experience in both programming (MapReduce) and analytical tools (Pig, Hive), as well as administrative tasks.</p>
+            </div>
+
+            <div class="skill-section mb-3">
+              <h5>NoSQL Databases</h5>
+              <p>Knowledge of NoSQL databases like Cassandra and MongoDB, and the ability to integrate them into Big Data projects.</p>
+            </div>
+
+            <div class="skill-section mb-3">
+              <h5>Stream Processing</h5>
+              <p>Experience in processing real-time data streams using tools like Apache Kafka and Apache Flink.</p>
+            </div>
+
+            <div class="skill-section mb-3">
+              <h5>Machine Learning and Artificial Intelligence</h5>
+              <p>Ability to design, train, and evaluate machine learning models, including neural networks, and apply them in data analysis tasks.</p>
+            </div>
+
+            <div class="skill-section mb-3">
+              <h5>Data Visualization</h5>
+              <p>Capable of creating clear and effective data visualizations using tools such as Power BI to support data-driven decision-making.</p>
+            </div>
+
+            <div class="skill-section mb-3">
+              <h5>Cloud Computing</h5>
+              <p>Hands-on experience with cloud platforms such as AWS and Microsoft Azure, and the ability to design cloud-based architectures for Big Data solutions.</p>
+            </div>
+
+            <div class="skill-section mb-3">
+              <h5>Data Science Project Management</h5>
+              <p>Experience leading Data Science projects, managing R&D teams, and implementing cutting-edge solutions, including language models (LLMs) and RAG-based chatbots.</p>
+            </div>
+          </div>
         </p>
         </div>
             </div>
@@ -333,35 +375,37 @@
     </section>
     <script>
       document.getElementById('contactForm').addEventListener('submit', async function(event) {
-        event.preventDefault();
+      event.preventDefault();
       
-        const form = event.target;
-        const formData = new FormData(form);
+      const form = event.target;
+      const formData = new FormData(form);
       
-        try {
-          const response = await fetch(form.action, {
-            method: form.method,
-            body: formData,
-            headers: {
-              'Accept': 'application/json'
-            }
-          });
-      
-          if (response.ok) {
-            document.getElementById('successMessage').style.display = 'block';
-            form.reset();
-            setTimeout(() => {
-              document.getElementById('successMessage').style.display = 'none';
-            }, 3000);
-          } else {
-            alert("Wystąpił problem z wysłaniem wiadomości.");
-          }
-        } catch (error) {
-          alert("Nie udało się wysłać formularza. Spróbuj ponownie.");
+      try {
+        const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
         }
-      });
-      </script>
+        });
       
+        if (response.ok) {
+        document.getElementById('successMessage').style.display = 'block';
+        form.reset();
+        setTimeout(() => {
+          document.getElementById('successMessage').style.display = 'none';
+        }, 3000);
+        } else {
+        alert("Wystąpił problem z wysłaniem wiadomości.");
+        }
+      } catch (error) {
+        alert("Nie udało się wysłać formularza. Spróbuj ponownie.");
+      }
+      });
+    </script>
+    
+    <!-- Sitemap Link -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

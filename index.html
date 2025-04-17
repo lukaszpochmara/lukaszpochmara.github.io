@@ -51,25 +51,36 @@
   <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section light-background position-relative">
-
-      <img src="assets/img/IMG_1730486080852.jpg" alt="14" class="img-fluid">
-      <div class="overlay"></div>
-      <div class="container" data-aos="zoom-out">
-      <div class="row justify-content-center">
-      <div class="col-lg-9">
-      <h2>Łukasz Pochmara</h2>
-      <p>I am: <span class="typed" data-typed-items="Entrepreneur, Programmer, Data Analyst, Big Data Engineer"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
-      <div class="social-links">
-        <a href="https://www.facebook.com/profile.php?id=100000810936091" style="font-size: 4rem; margin: 0 20px; color: #1877F2;"><i class="bi bi-facebook"></i></a>
-        <a href="https://github.com/lukaszpochmara" style="font-size: 4rem; margin: 0 20px; color: #171515;"><i class="bi bi-github"></i></a>
-        <a href="https://www.linkedin.com/in/%C5%82ukasz-pochmara-39014a310/" style="font-size: 4rem; margin: 0 20px; color: #0A66C2;"><i class="bi bi-linkedin"></i></a>
-        
+    <section id="hero" class="hero section light-background position-relative" style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 0;">
+      <img src="assets/img/IMG_1730486080852.jpg" alt="14" class="img-fluid hero-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; opacity: 0.25;">
+      <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(26,108,255,0.18) 0%, rgba(0,0,0,0.18) 100%); z-index: 2;"></div>
+      <div class="container" data-aos="zoom-out" style="position: relative; z-index: 3;">
+        <div class="row justify-content-center">
+          <div class="col-lg-9 text-center">
+            <h2 style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 3.2rem; color: #1a237e; letter-spacing: 1.5px; margin-bottom: 1.2rem; text-shadow: 0 2px 16px #fff8;">Łukasz Pochmara</h2>
+            <p style="font-size: 1.5rem; font-family: 'Raleway', sans-serif; color: #263238; margin-bottom: 2.2rem;">
+              I am: <span class="typed" data-typed-items="Entrepreneur, Programmer, Data Analyst, Big Data Engineer"></span>
+            </p>
+            <div class="social-links mb-4">
+              <a href="https://www.facebook.com/profile.php?id=100000810936091" style="font-size: 2.8rem; margin: 0 18px; color: #1877F2; transition: transform 0.2s, box-shadow 0.2s;" target="_blank"><i class="bi bi-facebook"></i></a>
+              <a href="https://github.com/lukaszpochmara" style="font-size: 2.8rem; margin: 0 18px; color: #171515; transition: transform 0.2s, box-shadow 0.2s;" target="_blank"><i class="bi bi-github"></i></a>
+              <a href="https://www.linkedin.com/in/%C5%82ukasz-pochmara-39014a310/" style="font-size: 2.8rem; margin: 0 18px; color: #0A66C2; transition: transform 0.2s, box-shadow 0.2s;" target="_blank"><i class="bi bi-linkedin"></i></a>
+            </div>
+            <a href="#about" class="btn btn-primary btn-lg" style="padding: 0.7rem 2.2rem; font-size: 1.2rem; border-radius: 2rem; font-weight: 600; box-shadow: 0 4px 24px #1a6cff22;">Dowiedz się więcej <i class="bi bi-arrow-down-circle ms-2"></i></a>
+          </div>
+        </div>
       </div>
-      </div>
-      </div>
-      </div>
-
+      <style>
+        .hero .social-links a:hover {
+          transform: scale(1.18);
+          box-shadow: 0 2px 16px #1a6cff33;
+          text-decoration: none;
+        }
+        @media (max-width: 768px) {
+          .hero h2 { font-size: 2.1rem; }
+          .hero .social-links a { font-size: 2rem; margin: 0 10px; }
+        }
+      </style>
     </section><!-- /Hero Section -->
 
 

@@ -515,7 +515,58 @@
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->
-  <div id="preloader"></div>
+  <div id="preloader">
+    <div class="preloader-spinner">
+      <div class="preloader-dot"></div>
+      <div class="preloader-dot"></div>
+      <div class="preloader-dot"></div>
+      <div class="preloader-dot"></div>
+    </div>
+  </div>
+  <style>
+    #preloader {
+      position: fixed;
+      left: 0; top: 0; right: 0; bottom: 0;
+      width: 100vw; height: 100vh;
+      background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.5s;
+    }
+    .preloader-spinner {
+      display: flex;
+      gap: 1.2rem;
+    }
+    .preloader-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00fff7 0%, #1a6cff 100%);
+      box-shadow: 0 0 16px #00fff7, 0 0 32px #1a6cff66;
+      animation: preloader-bounce 1.2s infinite cubic-bezier(.4,2,.6,1);
+    }
+    .preloader-dot:nth-child(2) { animation-delay: 0.2s; }
+    .preloader-dot:nth-child(3) { animation-delay: 0.4s; }
+    .preloader-dot:nth-child(4) { animation-delay: 0.6s; }
+
+    @keyframes preloader-bounce {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+      50% { transform: translateY(-32px) scale(1.2); opacity: 0.7; }
+    }
+  </style>
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+          preloader.style.opacity = '0';
+          setTimeout(() => preloader.style.display = 'none', 500);
+        }
+      }, 600); // Show at least 600ms for effect
+    });
+  </script>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

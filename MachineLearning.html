@@ -17,11 +17,13 @@
     }
 
     canvas {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
-      z-index: -1;
+      width: 100%;
+      height: 100%;
       opacity: 0.95;
+      pointer-events: none; /* Prevent interaction with the canvas */
     }
 
     header {
@@ -40,13 +42,18 @@
       font-size: 1.5rem;
       font-weight: bold;
       color: #00ffcc;
+    nav {
+      display: flex;
+      gap: 15px;
     }
 
     nav a {
-      margin: 0 15px;
+      padding: 0 10px;
       text-decoration: none;
       color: white;
       font-weight: 500;
+      transition: color 0.3s;
+    }
       transition: color 0.3s;
     }
 
@@ -91,6 +98,11 @@
       background: rgba(0, 0, 0, 0.3);
       font-size: 0.9rem;
     }
+
+    .email-link {
+      color: #00ffcc;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -101,7 +113,10 @@
     <nav>
       <a href="#about">O projekcie</a>
       <a href="#tech">Technologie</a>
-      <a href="#contact">Kontakt</a>
+    <h1 id="main-title">Machine Learning</h1>
+    <button id="toggle-glow" style="margin-top: 20px; padding: 10px 20px; font-size: 1rem; cursor: pointer;">
+      Toggle Glow Effect
+    </button>
     </nav>
   </header>
 
@@ -126,7 +141,7 @@
   </section>
 
   <section id="contact">
-    <h2>Kontakt</h2>
+      <a href="mailto:twojemail@example.com" class="email-link">twojemail@example.com</a>
     <p>
       Masz pytania lub chcesz porozmawiać o AI? Skontaktuj się: <br />
       <a href="mailto:twojemail@example.com" style="color:#00ffcc;">twojemail@example.com</a>
@@ -134,12 +149,17 @@
   </section>
 
   <footer>
-    &copy; 2025 Łukasz AI Project. All rights reserved.
+    &copy; <span id="current-year"></span> Łukasz AI Project. All rights reserved.
   </footer>
 
   <script>
     const canvas = document.getElementById('bg');
     const ctx = canvas.getContext('2d');
+    if (!ctx) {
+      console.error('2D context is not supported by this browser.');
+      alert('Your browser does not support the 2D canvas context required for this animation.');
+      return;
+    }
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -161,8 +181,8 @@
 
     // Prędkość sygnałów - zmień, aby przyspieszyć lub spowolnić animację
     const SIGNAL_SPEED = 1.5;
-
-    // Tworzenie neuronów w bardziej organicznym układzie
+            // Offset creates a wavy pattern for neuron positions, adding a more organic and dynamic layout.
+            const offset = Math.sin(i * 0.5) * 50; 
     for (let layer = 0; layer < LAYERS; layer++) {
         const neuronsInLayer = NEURONS_PER_LAYER[layer];
         for (let i = 0; i < neuronsInLayer; i++) {
@@ -190,12 +210,96 @@
             targetX: toNeuron.x,
             targetY: toNeuron.y,
             progress: 0,
-            color: `hsl(${Math.random() * 60 + 180}, 100%, 50%)`  // Kolory sygnałów (od niebieskiego do cyjanowego)
+            // Configurable range for signal colors (from blue to cyan)
+            const HUE_START = 180; // Starting hue for the color range
+            const HUE_RANGE = 60;  // Range of hues to generate colors
+            color: `hsl(${Math.random() * HUE_RANGE + HUE_START}, 100%, 50%)`  // Kolory sygnałów (od niebieskiego do cyjanowego)
         });
     }
 
     // Funkcja rysująca całą animację
     function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Czyszczenie płótna
+
+        // Rysowanie połączeń między neuronami
+        for (let i = 0; i < neurons.length; i++) {
+            const neuron = neurons[i];
+            if (neuron.layer < LAYERS - 1) {
+                const nextLayer = neurons.filter(n => n.layer === neuron.layer + 1);
+                for (const target of nextLayer) {
+                    const gradient = ctx.createLinearGradient(neuron.x, neuron.y, target.x, target.y);
+                    gradient.addColorStop(0, 'rgba(0, 255, 255, 0.1)');
+                    gradient.addColorStop(1, 'rgba(0, 128, 255, 0.1)');
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(neuron.x, neuron.y);
+                    ctx.lineTo(target.x, target.y);
+                    ctx.strokeStyle = gradient; // Styl połączeń
+                    ctx.lineWidth = 1; // Grubość linii
+                    ctx.stroke();
+                }
+        // Precompute sine values for pulsating effect
+        const sineValues = Array.from({ length: 360 }, (_, i) => Math.sin((i * Math.PI) / 180) * 2);
+
+        // Rysowanie neuronów z efektem pulsowania
+        for (const neuron of neurons) {
+            neuron.pulsePhase = (neuron.pulsePhase + 1) % 360; // Increment phase and loop back after 360
+            const pulseSize = sineValues[Math.floor(neuron.pulsePhase)]; // Use precomputed sine values
+        for (const neuron of neurons) {
+            neuron.pulsePhase += 0.05; // Szybkość pulsowania - możesz zmienić wartość
+            const pulseSize = Math.sin(neuron.pulsePhase) * 2; // Wielkość pulsowania
+            
+            ctx.beginPath();
+            ctx.arc(neuron.x, neuron.y, NEURON_RADIUS + pulseSize, 0, Math.PI * 2);
+            ctx.fillStyle = '#00FFFF'; // Kolor neuronów
+            ctx.shadowColor = '#00FFFF'; // Efekt świetlny
+            ctx.shadowBlur = 15; // Intensywność efektu świetlnego
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+
+        // Aktualizacja i rysowanie sygnałów
+        signals = signals.filter(signal => signal.progress <= 1); // Usuwanie zakończonych sygnałów
+        for (const signal of signals) {
+            signal.progress += 0.01 * SIGNAL_SPEED; // Postęp sygnału
+            const x = signal.x + (signal.targetX - signal.x) * signal.progress;
+            const y = signal.y + (signal.targetY - signal.y) * signal.progress;
+
+            ctx.beginPath();
+            ctx.arc(x, y, 3, 0, Math.PI * 2);
+            ctx.fillStyle = signal.color; // Kolor sygnału
+            ctx.shadowColor = signal.color; // Efekt świetlny sygnału
+            ctx.shadowBlur = 10;
+            ctx.fill();
+        // Deterministyczne tworzenie nowych sygnałów w stałych odstępach czasu
+        setInterval(createSignal, 500); // Tworzenie sygnału co 500 ms
+
+    const toggleGlowButton = document.getElementById('toggle-glow');
+    const mainTitle = document.getElementById('main-title');
+        // Losowe tworzenie nowych sygnałów
+    const toggleGlowButton = document.getElementById('toggle-glow');
+    const mainTitle = document.getElementById('main-title');
+
+    toggleGlowButton.addEventListener('click', () => {
+        if (mainTitle.style.textShadow) {
+            mainTitle.style.textShadow = '';
+        } else {
+            mainTitle.style.textShadow = '0 0 15px #00ffcc';
+        }
+    // Use the Page Visibility API to pause/resume animation
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            cancelAnimationFrame(animationFrameId); // Stop animation when page is hidden
+        } else {
+            draw(); // Resume animation when page is visible
+        }
+    });
+    // Dynamically set the current year in the footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+    let animationFrameId;
+    function draw() {
+        animationFrameId = requestAnimationFrame(draw); // Store the animation frame ID
         ctx.clearRect(0, 0, canvas.width, canvas.height); // Czyszczenie płótna
 
         // Rysowanie połączeń między neuronami
@@ -247,9 +351,11 @@
             ctx.fill();
             ctx.shadowBlur = 0;
         }
+    }
 
-        // Losowe tworzenie nowych sygnałów
-        if (Math.random() < 0.1) createSignal();
+    draw();
+
+    draw();
 
         requestAnimationFrame(draw); // Kontynuacja animacji
     }

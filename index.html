@@ -62,50 +62,111 @@
 
     <nav id="navmenu" class="navmenu">
       <ul>
-      <li>
-        <a href="#hero" class="active">
-        <i class="bi bi-house navicon d-inline d-md-none" style="font-size: 1.7rem;"></i>
-        <i class="bi bi-house navicon d-none d-md-inline"></i>
-        <span class="d-none d-md-inline">Home</span>
-        </a>
-      </li>
-      <li>
-        <a href="#about">
-        <i class="bi bi-person navicon d-inline d-md-none" style="font-size: 1.7rem;"></i>
-        <i class="bi bi-person navicon d-none d-md-inline"></i>
-        <span class="d-none d-md-inline">About</span>
-        </a>
-      </li>
-      <li>
-        <a href="#resume">
-        <i class="bi bi-file-earmark-text navicon d-inline d-md-none" style="font-size: 1.7rem;"></i>
-        <i class="bi bi-file-earmark-text navicon d-none d-md-inline"></i>
-        <span class="d-none d-md-inline">Resume</span>
-        </a>
-      </li>
-      <li>
-        <a href="#services">
-        <i class="bi bi-hdd-stack navicon d-inline d-md-none" style="font-size: 1.7rem;"></i>
-        <i class="bi bi-hdd-stack navicon d-none d-md-inline"></i>
-        <span class="d-none d-md-inline">Services</span>
-        </a>
-      </li>
-      <li>
-        <a href="blog.html">
-        <i class="bi bi-journal-text navicon d-inline d-md-none" style="font-size: 1.7rem;"></i>
-        <i class="bi bi-journal-text navicon d-none d-md-inline"></i>
-        <span class="d-none d-md-inline">Blog</span>
-        </a>
-      </li>
-      <li>
-        <a href="#contact">
-        <i class="bi bi-envelope navicon d-inline d-md-none" style="font-size: 1.7rem;"></i>
-        <i class="bi bi-envelope navicon d-none d-md-inline"></i>
-        <span class="d-none d-md-inline">Contact</span>
-        </a>
-      </li>
+        <li>
+          <a href="#hero" class="active">
+            <i class="bi bi-house navicon d-inline d-md-none mobile-navicon"></i>
+            <i class="bi bi-house navicon d-none d-md-inline"></i>
+            <span class="d-none d-md-inline">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="#about">
+            <i class="bi bi-person navicon d-inline d-md-none mobile-navicon"></i>
+            <i class="bi bi-person navicon d-none d-md-inline"></i>
+            <span class="d-none d-md-inline">About</span>
+          </a>
+        </li>
+        <li>
+          <a href="#resume">
+            <i class="bi bi-file-earmark-text navicon d-inline d-md-none mobile-navicon"></i>
+            <i class="bi bi-file-earmark-text navicon d-none d-md-inline"></i>
+            <span class="d-none d-md-inline">Resume</span>
+          </a>
+        </li>
+        <li>
+          <a href="#services">
+            <i class="bi bi-hdd-stack navicon d-inline d-md-none mobile-navicon"></i>
+            <i class="bi bi-hdd-stack navicon d-none d-md-inline"></i>
+            <span class="d-none d-md-inline">Services</span>
+          </a>
+        </li>
+        <li>
+          <a href="blog.html">
+            <i class="bi bi-journal-text navicon d-inline d-md-none mobile-navicon"></i>
+            <i class="bi bi-journal-text navicon d-none d-md-inline"></i>
+            <span class="d-none d-md-inline">Blog</span>
+          </a>
+        </li>
+        <li>
+          <a href="#contact">
+            <i class="bi bi-envelope navicon d-inline d-md-none mobile-navicon"></i>
+            <i class="bi bi-envelope navicon d-none d-md-inline"></i>
+            <span class="d-none d-md-inline">Contact</span>
+          </a>
+        </li>
       </ul>
     </nav>
+    <style>
+      /* Zmniejsz ikonki na mobile */
+      @media (max-width: 767.98px) {
+        .mobile-navicon {
+          font-size: 1.25rem !important;
+          margin-right: 0.5rem;
+          vertical-align: middle;
+        }
+        #navmenu ul {
+          padding-left: 0.5rem;
+        }
+        #navmenu ul li {
+          margin-bottom: 0.2rem;
+        }
+      }
+      /* Chowaj menu na mobile, pokaż po kliknięciu burgera */
+      @media (max-width: 1199.98px) {
+        #navmenu {
+          position: fixed;
+          left: -220px;
+          top: 0;
+          width: 200px;
+          height: 100vh;
+          background: #fff;
+          box-shadow: 2px 0 12px #0001;
+          z-index: 2000;
+          transition: left 0.3s;
+          padding-top: 60px;
+        }
+        #navmenu.active {
+          left: 0;
+        }
+        .header-toggle {
+          cursor: pointer;
+          font-size: 2rem;
+          position: absolute;
+          left: 24px;
+          top: 24px;
+          z-index: 2100;
+          color: #1a237e;
+        }
+      }
+    </style>
+    <script>
+      // Burger menu toggle
+      document.addEventListener('DOMContentLoaded', function () {
+        const toggle = document.querySelector('.header-toggle');
+        const nav = document.getElementById('navmenu');
+        if (toggle && nav) {
+          toggle.addEventListener('click', function () {
+            nav.classList.toggle('active');
+          });
+          // Optional: close menu on link click (mobile)
+          nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+              nav.classList.remove('active');
+            });
+          });
+        }
+      });
+    </script>
 
   </header>
 

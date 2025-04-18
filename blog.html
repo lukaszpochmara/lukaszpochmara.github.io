@@ -27,64 +27,7 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <style>
-    body {
-      background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
-      color: #fff;
-      font-family: 'Poppins', 'Raleway', Arial, sans-serif;
-      min-height: 100vh;
-    }
-    .under-construction {
-      background: rgba(255,255,255,0.07);
-      border-radius: 1.5rem;
-      box-shadow: 0 4px 32px #1a6cff33;
-      max-width: 600px;
-      margin: 64px auto 0 auto;
-      padding: 2.5rem 2rem 2rem 2rem;
-      text-align: center;
-    }
-    .under-construction h1 {
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: #00fff7;
-      text-shadow: 0 2px 16px #1a6cff88;
-      margin-bottom: 1.2rem;
-      letter-spacing: 1px;
-    }
-    .under-construction p {
-      font-size: 1.2rem;
-      color: #e3f2fd;
-      margin-bottom: 2rem;
-    }
-    .under-construction .bi-tools {
-      font-size: 3.5rem;
-      color: #1a6cff;
-      margin-bottom: 1.2rem;
-      text-shadow: 0 0 16px #00fff7;
-    }
-    .back-btn {
-      margin-top: 2.5rem;
-      display: flex;
-      justify-content: center;
-    }
-    .back-btn a {
-      border-radius: 2rem;
-      box-shadow: 0 4px 24px #1a6cff22;
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding: 0.7rem 2.2rem;
-      background: linear-gradient(90deg, #00fff7 0%, #1a6cff 100%);
-      color: #1a237e;
-      border: 2px solid #fff;
-      transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
-    }
-    .back-btn a:hover {
-      background: #1a6cff;
-      color: #fff;
-      transform: scale(1.07);
-      box-shadow: 0 6px 32px #1a6cff99, 0 2px 12px #1a6cff22;
-    }
-  </style>
+  <!-- Styles moved to external stylesheet -->
 </head>
 
 <body class="starter-page-page">
@@ -103,18 +46,16 @@
     </nav>
   </header>
 
-  <main class="main">
-    <div class="under-construction" data-aos="zoom-in">
-      <i class="bi bi-tools"></i>
-      <h1>Strona w budowie</h1>
-      <p>Przepraszamy, ta podstrona jest w trakcie tworzenia.<br>
-      Wróć na stronę główną lub sprawdź inne sekcje mojego portfolio.</p>
-      <div class="back-btn">
-        <a href="index.html"><i class="bi bi-arrow-left me-2"></i>Powrót do strony głównej</a>
-      </div>
-    </div>
-  </main>
 
+<main style="height: calc(100vh - 160px); margin-top: 80px; margin-bottom: 80px;">
+  <iframe src="https://nbviewer.org/github/lukaszpochmara/ML/blob/main/Untitled-3.ipynb" 
+          width="100%" 
+          height="100%" 
+          style="border:none; display: block;">
+    Twoja przeglądarka nie obsługuje elementu iframe. Możesz zobaczyć zawartość pod tym linkiem: 
+    <a href="https://nbviewer.org/github/lukaszpochmara/ML/blob/main/Untitled-3.ipynb" target="_blank">Notebook na nbviewer.org</a>.
+  </iframe>
+</main>
   <footer id="footer" class="footer position-relative light-background">
     <div class="container">
       <h3 class="sitename">Łukasz Pochmara</h3>
@@ -151,6 +92,7 @@
                 startDelay: 1000
               });
             }
+            spinner.style.display = 'none';
           });
         </script>
       </div>
@@ -222,6 +164,9 @@
                 </div>
                 <div class="col-12 text-center">
                   <button type="submit" class="btn btn-primary">Wyślij Wiadomość</button>
+                  <div id="loadingSpinner" class="spinner-border text-primary" role="status" style="display: none; margin-top: 1rem;">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
                 </div>
               </div>
             </form>
@@ -230,6 +175,8 @@
                 event.preventDefault();
                 const form = event.target;
                 const formData = new FormData(form);
+                const spinner = document.getElementById('loadingSpinner');
+                spinner.style.display = 'inline-block';
                 try {
                   const response = await fetch(form.action, {
                     method: form.method,
@@ -245,6 +192,7 @@
                       document.getElementById('successMessage').style.display = 'none';
                     }, 3000);
                   } else {
+                    spinner.style.display = 'none';
                     alert("Wystąpił problem z wysłaniem wiadomości.");
                   }
                 } catch (error) {

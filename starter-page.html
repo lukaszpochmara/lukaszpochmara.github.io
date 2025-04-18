@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Starter Page - MyResume Bootstrap Template</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>Strona w budowie - Łukasz Pochmara</title>
+  <meta content="Strona w budowie. Portfolio Łukasz Pochmara - Big Data Engineer, Data Analyst, Cloud Specialist." name="description">
+  <meta content="Big Data, Data Engineer, Python, Cloud, Portfolio, Łukasz Pochmara" name="keywords">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -15,7 +15,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,81 +27,236 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+      color: #fff;
+      font-family: 'Poppins', 'Raleway', Arial, sans-serif;
+      min-height: 100vh;
+    }
+    .under-construction {
+      background: rgba(255,255,255,0.07);
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 32px #1a6cff33;
+      max-width: 600px;
+      margin: 64px auto 0 auto;
+      padding: 2.5rem 2rem 2rem 2rem;
+      text-align: center;
+    }
+    .under-construction h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #00fff7;
+      text-shadow: 0 2px 16px #1a6cff88;
+      margin-bottom: 1.2rem;
+      letter-spacing: 1px;
+    }
+    .under-construction p {
+      font-size: 1.2rem;
+      color: #e3f2fd;
+      margin-bottom: 2rem;
+    }
+    .under-construction .bi-tools {
+      font-size: 3.5rem;
+      color: #1a6cff;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 0 16px #00fff7;
+    }
+    .back-btn {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+    }
+    .back-btn a {
+      border-radius: 2rem;
+      box-shadow: 0 4px 24px #1a6cff22;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.7rem 2.2rem;
+      background: linear-gradient(90deg, #00fff7 0%, #1a6cff 100%);
+      color: #1a237e;
+      border: 2px solid #fff;
+      transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+    }
+    .back-btn a:hover {
+      background: #1a6cff;
+      color: #fff;
+      transform: scale(1.07);
+      box-shadow: 0 6px 32px #1a6cff99, 0 2px 12px #1a6cff22;
+    }
+  </style>
 </head>
 
 <body class="starter-page-page">
 
   <header id="header" class="header d-flex flex-column justify-content-center">
-
     <i class="header-toggle d-xl-none bi bi-list"></i>
-
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a href="#hero"><i class="bi bi-house navicon"></i><span>Home</span></a></li>
+        <li><a href="index.html"><i class="bi bi-house navicon"></i><span>Home</span></a></li>
         <li><a href="#about"><i class="bi bi-person navicon"></i><span>About</span></a></li>
         <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i><span>Resume</span></a></li>
-        <li><a href="#portfolio"><i class="bi bi-images navicon"></i><span>Portfolio</span></a></li>
         <li><a href="#services"><i class="bi bi-hdd-stack navicon"></i><span>Services</span></a></li>
+        <li><a href="blog.html"><i class="bi bi-journal-text navicon"></i><span>Blog</span></a></li>
         <li><a href="#contact"><i class="bi bi-envelope navicon"></i><span>Contact</span></a></li>
       </ul>
     </nav>
-
   </header>
 
   <main class="main">
-
-    <!-- Page Title -->
-    <div class="page-title" data-aos="fade">
-      <div class="container">
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Starter Page</li>
-          </ol>
-        </nav>
-        <h1>Starter Page</h1>
+    <div class="under-construction" data-aos="zoom-in">
+      <i class="bi bi-tools"></i>
+      <h1>Strona w budowie</h1>
+      <p>Przepraszamy, ta podstrona jest w trakcie tworzenia.<br>
+      Wróć na stronę główną lub sprawdź inne sekcje mojego portfolio.</p>
+      <div class="back-btn">
+        <a href="index.html"><i class="bi bi-arrow-left me-2"></i>Powrót do strony głównej</a>
       </div>
-    </div><!-- End Page Title -->
-
-    <!-- Starter Section Section -->
-    <section id="starter-section" class="starter-section section d-flex flex-column align-items-center justify-content-center text-center">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-      <h2>Starter Section</h2>
-      <p>Strona w budowie przepraszamy</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up">
-      <p>Use this .</p>
-      </div>
-
-    </section><!-- /Starter Section Section -->
-
+    </div>
   </main>
 
   <footer id="footer" class="footer position-relative light-background">
     <div class="container">
       <h3 class="sitename">Łukasz Pochmara</h3>
-      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+      <p>Big Data Engineer &amp; Data Analyst | Python • Cloud • SQL</p>
       <div class="social-links d-flex justify-content-center">
-       
-        <a href=""><i class="bi bi-facebook"></i></a>
-        <a href=""><i class="bi bi-instagram"></i></a>
-        <a href=""><i class="bi bi-skype"></i></a>
-        <a href=""><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100000810936091" target="_blank"><i class="bi bi-facebook"></i></a>
+        <a href="https://github.com/lukaszpochmara" target="_blank"><i class="bi bi-github"></i></a>
+        <a href="https://www.linkedin.com/in/%C5%82ukasz-pochmara-39014a310/" target="_blank"><i class="bi bi-linkedin"></i></a>
       </div>
-      <div class="container">
-        <div class="copyright">
-          <span>Copyright</span> <strong class="px-1 sitename">Łukasz Pochmara</strong> <span>All Rights Reserved</span>
-        </div>
-        <div class="credits">
-         
-          Designed by Łukasz Pochmara <a href="><Mój profil na githubie</a>
-        </div>
+      <div class="copyright">
+        <span>Copyright</span> <strong class="px-1 sitename">Łukasz Pochmara</strong> <span>All Rights Reserved</span>
+      </div>
+      <div class="credits">
+        Designed by Łukasz Pochmara &middot; <a href="https://github.com/lukaszpochmara" target="_blank">Mój profil na GitHubie</a>
       </div>
     </div>
+    <!-- Kontakt Section -->
+    <section id="contact" class="contact section" style="background: transparent; margin-top: 2rem;">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Kontakt</h2>
+        <p class="typed-message" data-typed-message="Skontaktuj się ze mną, aby omówić współpracę lub projekty."></p>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.typed-message').style.fontSize = '1.2rem';
+            if (window.Typed) {
+              new Typed('.typed-message', {
+                strings: ['Skontaktuj się ze mną, aby omówić współpracę lub projekty.', ''],
+                typeSpeed: 50,
+                backSpeed: 30,
+                loop: true,
+                showCursor: true,
+                cursorChar: '|',
+                backDelay: 2000,
+                startDelay: 1000
+              });
+            }
+          });
+        </script>
+      </div>
+      <div class="container" data-aos="fade" data-aos-delay="100">
+        <div class="row gy-4">
+          <div class="col-lg-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Lokalizacja</h3>
+                <p>Warszawa, Polska</p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Telefon</h3>
+                <p>787-980-229</p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email</h3>
+                <p>lukaszpochmara@gmail.com</p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+              <i class="bi bi-linkedin flex-shrink-0"></i>
+              <div>
+                <h3>LinkedIn</h3>
+                <p><a href="https://www.linkedin.com/in/%C5%82ukasz-pochmara/">Profil LinkedIn</a></p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="600">
+              <i class="bi bi-github flex-shrink-0"></i>
+              <div>
+                <h3>GitHub</h3>
+                <p><a href="https://github.com/lukaszpochmara" target="_blank">Profil GitHub</a></p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="700">
+              <i class="bi bi-journal-text flex-shrink-0"></i>
+              <div>
+                <h3>Blog</h3>
+                <p><a href="blog.html" target="_blank">Przejdź do bloga</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <form id="contactForm" action="https://formspree.io/f/myzeqgjg" method="POST" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Twoje Imię" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="email" name="email" class="form-control" placeholder="Twój Email" required>
+                </div>
+                <div class="col-12">
+                  <input type="text" name="subject" class="form-control" placeholder="Temat" required>
+                </div>
+                <div class="col-12">
+                  <textarea name="message" class="form-control" rows="6" placeholder="Wiadomość" required></textarea>
+                </div>
+                <div class="col-12">
+                  <div id="successMessage" class="alert alert-success" style="display: none;">
+                    Wiadomość została wysłana pomyślnie!
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-primary">Wyślij Wiadomość</button>
+                </div>
+              </div>
+            </form>
+            <script>
+              document.getElementById('contactForm').addEventListener('submit', async function(event) {
+                event.preventDefault();
+                const form = event.target;
+                const formData = new FormData(form);
+                try {
+                  const response = await fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                    headers: {
+                      'Accept': 'application/json'
+                    }
+                  });
+                  if (response.ok) {
+                    document.getElementById('successMessage').style.display = 'block';
+                    form.reset();
+                    setTimeout(() => {
+                      document.getElementById('successMessage').style.display = 'none';
+                    }, 3000);
+                  } else {
+                    alert("Wystąpił problem z wysłaniem wiadomości.");
+                  }
+                } catch (error) {
+                  alert("Nie udało się wysłać formularza. Spróbuj ponownie.");
+                }
+              });
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /Kontakt Section -->
   </footer>
 
   <!-- Scroll Top -->
@@ -126,5 +281,4 @@
   <script src="assets/js/main.js"></script>
 
 </body>
-
 </html>

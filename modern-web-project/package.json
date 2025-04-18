@@ -1,0 +1,22 @@
+{
+  "name": "modern-web-project",
+  "version": "1.0.0",
+  "description": "A modern web project utilizing TailwindCSS for styling.",
+  "main": "src/js/app.js",
+  "scripts": {
+    "build": "postcss src/css/tailwind.css -o public/assets/css/tailwind.css",
+    "watch": "postcss src/css/tailwind.css -o public/assets/css/tailwind.css --watch",
+    "start": "live-server public"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "tailwindcss": "^2.2.19",
+    "postcss": "^8.4.6",
+    "autoprefixer": "^10.4.2",
+    "live-server": "^1.2.1"
+  },
+  "devDependencies": {
+    "postcss-cli": "^9.1.0"
+  }
+}

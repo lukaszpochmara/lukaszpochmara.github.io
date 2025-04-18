@@ -1,0 +1,41 @@
+/* This file is for custom styles that complement the TailwindCSS framework. */
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f8fafc; /* Light background color */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #1f2937; /* Dark text color */
+}
+
+a {
+    color: #3b82f6; /* Tailwind blue */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem; /* Rounded corners */
+    background-color: #3b82f6; /* Tailwind blue */
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+}

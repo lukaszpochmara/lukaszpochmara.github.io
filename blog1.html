@@ -27,68 +27,11 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <style>
-    body {
-      background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
-      color: #fff;
-      font-family: 'Poppins', 'Raleway', Arial, sans-serif;
-      min-height: 100vh;
-    }
-    .under-construction {
-      background: rgba(255,255,255,0.07);
-      border-radius: 1.5rem;
-      box-shadow: 0 4px 32px #1a6cff33;
-      max-width: 600px;
-      margin: 64px auto 0 auto;
-      padding: 2.5rem 2rem 2rem 2rem;
-      text-align: center;
-    }
-    .under-construction h1 {
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: #00fff7;
-      text-shadow: 0 2px 16px #1a6cff88;
-      margin-bottom: 1.2rem;
-      letter-spacing: 1px;
-    }
-    .under-construction p {
-      font-size: 1.2rem;
-      color: #e3f2fd;
-      margin-bottom: 2rem;
-    }
-    .under-construction .bi-tools {
-      font-size: 3.5rem;
-      color: #1a6cff;
-      margin-bottom: 1.2rem;
-      text-shadow: 0 0 16px #00fff7;
-    }
-    .back-btn {
-      margin-top: 2.5rem;
-      display: flex;
-      justify-content: center;
-    }
-    .back-btn a {
-      border-radius: 2rem;
-      box-shadow: 0 4px 24px #1a6cff22;
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding: 0.7rem 2.2rem;
-      background: linear-gradient(90deg, #00fff7 0%, #1a6cff 100%);
-      color: #1a237e;
-      border: 2px solid #fff;
-      transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
-    }
-    .back-btn a:hover {
-      background: #1a6cff;
-      color: #fff;
-      transform: scale(1.07);
-      box-shadow: 0 6px 32px #1a6cff99, 0 2px 12px #1a6cff22;
-    }
-  </style>
+  <!-- Styles moved to external stylesheet -->
 </head>
-
 <body class="starter-page-page">
 
+  <header id="header" class="header d-flex flex-column justify-content-center"></header>
   <header id="header" class="header d-flex flex-column justify-content-center">
     <i class="header-toggle d-xl-none bi bi-list"></i>
     <nav id="navmenu" class="navmenu">
@@ -103,39 +46,16 @@
     </nav>
   </header>
 
-<main class="main">
-    <section class="container py-5"></section>
-        <h1 class="text-center mb-5" style="color:#00fff7; text-shadow:0 2px 16px #1a6cff88;">Blog</h1>
-        <div class="row justify-content-center align-items-stretch">
-            <div class="col-md-5 mb-4 d-flex align-items-stretch">
-                <div class="card h-100 shadow" style="border-radius:1.5rem; overflow:hidden; width:100%;">
-                    <div style="width:100%; aspect-ratio:1/1; background:#222b3a; position:relative; display:flex; align-items:center; justify-content:center;">
-                        <img src="assets/img/istockphoto-1387900612-612x612.jpg" class="card-img-top" alt="Machine Learning" style="object-fit:cover; width:100%; height:110%; border-radius:0;">
-                    </div>
-                    <div class="card-body p-0" style="height:0;"></div>
-                </div>
-            </div>
-            <div class="col-md-7 mb-4 d-flex align-items-center">
-                <div>
-                    <h3 style="color:#00fff7;">
-                        <a href="blog1.html" style="color:#00fff7; text-decoration:underline;">
-                            Prosty model regresji logistycznej (na zbiorze Titanic)
-                        </a>
-                    </h3>
-                    <p style="color:#e3f2fd;">
-                        Regresja logistyczna to jedno z najprostszych i najczęściej stosowanych narzędzi w klasyfikacji binarnej. W artykule opisano, jak działa ten model na przykładzie predykcji przeżywalności pasażerów na słynnym zbiorze danych Titanic – model przewiduje prawdopodobieństwo przeżycia na podstawie cech takich jak wiek, płeć czy klasa podróży. Przedstawiono również przykładową implementację w Pythonie z użyciem biblioteki <code>scikit-learn</code>, gdzie model jest trenowany na danych, a następnie wykorzystywany do przewidywania klas nowych obserwacji. Regresja logistyczna znajduje zastosowanie m.in. w rozpoznawaniu spamu, analizie ryzyka kredytowego czy diagnostyce medycznej. Jej zaletą jest prostota, szybkość działania oraz łatwość interpretacji wyników, co czyni ją dobrym wyborem na początkowym etapie analizy danych.
-                    </p>
- 
-                    </pre>
-                    <p style="color:#e3f2fd;">
-                        Model uczy się na podstawie danych treningowych, a następnie przewiduje klasy dla nowych przykładów. Regresja logistyczna jest szybka, prosta i często stanowi pierwszy krok w analizie danych.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
 
+<main style="height: calc(100vh - 160px); margin-top: 80px; margin-bottom: 80px;">
+  <iframe src="https://nbviewer.org/github/lukaszpochmara/ML/blob/main/Untitled-3.ipynb" 
+          width="100%" 
+          height="100%" 
+          style="border:none; display: block;">
+    Twoja przeglądarka nie obsługuje elementu iframe. Możesz zobaczyć zawartość pod tym linkiem: 
+    <a href="https://nbviewer.org/github/lukaszpochmara/ML/blob/main/Untitled-3.ipynb" target="_blank">Notebook na nbviewer.org</a>.
+  </iframe>
+</main>
   <footer id="footer" class="footer position-relative light-background">
     <div class="container">
       <h3 class="sitename">Łukasz Pochmara</h3>
@@ -172,6 +92,7 @@
                 startDelay: 1000
               });
             }
+            spinner.style.display = 'none';
           });
         </script>
       </div>
@@ -243,6 +164,9 @@
                 </div>
                 <div class="col-12 text-center">
                   <button type="submit" class="btn btn-primary">Wyślij Wiadomość</button>
+                  <div id="loadingSpinner" class="spinner-border text-primary" role="status" style="display: none; margin-top: 1rem;">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
                 </div>
               </div>
             </form>
@@ -251,6 +175,8 @@
                 event.preventDefault();
                 const form = event.target;
                 const formData = new FormData(form);
+                const spinner = document.getElementById('loadingSpinner');
+                spinner.style.display = 'inline-block';
                 try {
                   const response = await fetch(form.action, {
                     method: form.method,
@@ -266,6 +192,7 @@
                       document.getElementById('successMessage').style.display = 'none';
                     }, 3000);
                   } else {
+                    spinner.style.display = 'none';
                     alert("Wystąpił problem z wysłaniem wiadomości.");
                   }
                 } catch (error) {

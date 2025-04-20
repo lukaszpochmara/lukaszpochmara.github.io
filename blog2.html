@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Łukasz Pochmara - Big Data Engineer and Programmer</title>
+  <meta content="Portfolio of Łukasz Pochmara, showcasing expertise in Big Data, Cloud Computing, Python, and Data Engineering." name="description">
+  <meta content="Big Data Engineer, Programmer, Data Analyst, Cloud Computing, Python, Spark, AWS, SQL, Machine Learning, Data Visualization" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+   
+</head>
+
+<body class="index-page">
+  <a href="sitemap.xml"
+   class="btn btn-info fw-bold shadow"
+   id="sitemap-btn"
+   style="
+     position: fixed;
+     top: 24px;
+     right: 72px;
+     z-index: 1050;
+     border-radius: 2rem;
+     font-weight: 700;
+     box-shadow: 0 4px 24px #1a6cff55, 0 2px 12px #1a6cff22;
+     background: linear-gradient(90deg, #00fff7 0%, #1a6cff 100%);
+     color: #1a237e;
+     border: 2px solid #fff;
+     padding: 0.45rem 1.4rem;
+     font-size: 1rem;
+     letter-spacing: 1px;
+     transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+   "
+   onmouseover="this.style.transform='scale(1.07)';this.style.boxShadow='0 6px 32px #1a6cff99, 0 2px 12px #1a6cff22';this.style.background='#1a6cff';this.style.color='#fff';"
+   onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 24px #1a6cff55, 0 2px 12px #1a6cff22';this.style.background='linear-gradient(90deg, #00fff7 0%, #1a6cff 100%)';this.style.color='#1a237e';"
+>
+  <i class="bi bi-diagram-3 me-2"></i>Sitemap
+</a>
+
+<header id="header" class="header d-flex flex-column justify-content-cent</header>er">
+
+    <i class="header-toggle d-xl-none bi bi-list"></i>
+
+    <nav id="navmenu" class="navmenu">
+        <ul>
+            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <style>
+        /* Chowaj menu na mobile, pokaż po kliknięciu burgera */
+            <i class="bi bi-person navicon d-none d-md-inline"></i>
+            <span class="d-none d-md-inline">About</span>
+          </a>
+        </li>
+        <li>
+          <a href="#resume">
+            <i class="bi bi-file-earmark-text navicon d-inline d-md-none mobile-navicon"></i>
+            <i class="bi bi-file-earmark-text navicon d-none d-md-inline"></i>
+            <span class="d-none d-md-inline">Resume</span>
+          </a>
+        </li>
+        <li>
+          <a href="#services">
+            <i class="bi bi-hdd-stack navicon d-inline d-md-none mobile-navicon"></i>
+            <i class="bi bi-hdd-stack navicon d-none d-md-inline"></i>
+            <span class="d-none d-md-inline">Services</span>
+          </a>
+        </li>
+        <li>
+          <a href="blog.html">
+            <i class="bi bi-journal-text navicon d-inline d-md-none mobile-navicon"></i>
+            <i class="bi bi-journal-text navicon d-none d-md-inline"></i>
+            <span class="d-none d-md-inline">Blog</span>
+          </a>
+        </li>
+        <li>
+          <a href="#contact">
+            <i class="bi bi-envelope navicon d-inline d-md-none mobile-navicon"></i>
+            <i class="bi bi-envelope navicon d-none d-md-inline"></i>
+            <span class="d-none d-md-inline">Contact</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <style>
+      /* Zmniejsz ikonki na mobile */
+      @media (max-width: 767.98px) {
+        .mobile-navicon {
+          font-size: 1.25rem !important;
+          margin-right: 0.5rem;
+          vertical-align: middle;
+        }
+        #navmenu ul {
+          padding-left: 0.5rem;
+        }
+        #navmenu ul li {
+          margin-bottom: 0.2rem;
+        }
+      }
+      /* Chowaj menu na mobile, pokaż po kliknięciu burgera */
+      @media (max-width: 1199.98px) {
+        #navmenu {
+          position: fixed;
+          left: -220px;
+          top: 0;
+          width: 200px;
+          height: 100vh;
+          background: #fff;
+          box-shadow: 2px 0 12px #0001;
+          z-index: 2000;
+          transition: left 0.3s;
+          padding-top: 60px;
+        }
+        #navmenu.active {
+          left: 0;
+        }
+        .header-toggle {
+          cursor: pointer;
+          font-size: 2rem;
+          position: absolute;
+          left: 24px;
+          top: 24px;
+          z-index: 2100;
+          color: #1a237e;
+        }
+      }
+    </style>
+    <script>
+      // Burger menu toggle
+      document.addEventListener('DOMContentLoaded', function () {
+        const toggle = document.querySelector('.header-toggle');
+        const nav = document.getElementById('navmenu');
+        if (toggle && nav) {
+          toggle.addEventListener('click', function () {
+            nav.classList.toggle('active');
+          });
+          // Optional: close menu on link click (mobile)
+          nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+              nav.classList.remove('active');
+            });
+          });
+        }
+      });
+    </script>
+
+  </header>
+
+  <main class="main">
+
+ 
+
+
+    <!-- About section removed -->
+
+   
+
+   
+  
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>BLOG</h2>
+        <p>Welcome to my blog, where I share insights and knowledge about machine learning, cloud computing, and big data technologies. Explore articles that dive deep into technical concepts and real-world applications.</p>
+        </div><!-- End Section Title -->
+
+        <div class="container"></div>
+
+        <div class="row gy-4">
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item item-cyan position-relative">
+            <img src="assets/img/istockphoto-1387900612-612x612.jpg" alt="Machine Learning" class="img-fluid" style="margin-bottom:15px;">
+            <a href="blog1.html" class="stretched-link">
+            <h3>Machine Learning</h3>
+            </a>
+            <p>Machine learning is a branch of artificial intelligence focused on building systems that learn from data. These technologies power everything from recommendation systems to autonomous vehicles, helping businesses automate processes and gain valuable insights from complex datasets.</p>
+            <div class="icon">
+            <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"></svg>
+            <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
+            </svg>
+            <i class="bi bi-brain"></i>
+            </div>
+            </div>
+            </div><!-- End Service Item -->
+    
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-item item-cyan position-relative">
+                <img src="assets/img/python.jpg" alt="Machine Learning" class="img-fluid" style="margin-bottom:15px;">
+                <a href="blog1.html" class="stretched-link">
+                <h3>Python</h3>
+                </a>
+                <p>Python is a versatile, high-level programming language known for its simplicity and readability. With comprehensive libraries like NumPy, Pandas, and TensorFlow, Python powers everything from web applications to data analysis and AI systems, making it the preferred choice for developers, data scientists, and organizations seeking efficient and maintainable code.</p>
+                <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"></svg>
+                <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
+                </svg>
+                <i class="bi bi-brain"></i>
+                </div>
+                </div>
+            </div><!-- End Service Item -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-item item-cyan position-relative">
+                <img src="assets/img/aws.jpg" alt="Machine Learning" class="img-fluid" style="margin-bottom:15px;">
+                <a href="blog1.html" class="stretched-link">
+                <h3>AWS</h3>
+                </a>
+                <p>Amazon Web Services (AWS) is a comprehensive cloud computing platform providing scalable, reliable infrastructure services. With offerings spanning computing power, storage solutions, databases, and machine learning tools, AWS enables businesses to reduce IT costs, improve agility, and innovate rapidly without the constraints of traditional infrastructure management.</p>
+                <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"></svg>
+                <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
+                </svg>
+                <i class="bi bi-brain"></i>
+                </div>
+                </div>
+              </div><!-- End Service Item -->
+
+              <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-item item-cyan position-relative">
+                <img src="assets/img/mongo.jpg" alt="Machine Learning" class="img-fluid" style="margin-bottom:15px;">
+                <a href="blog1.html" class="stretched-link">
+                <h3>MongoDB</h3>
+                </a>
+                <p>MongoDB is a popular NoSQL database that stores data in flexible, JSON-like documents. This document-oriented approach eliminates the need for rigid schemas, allowing developers to adapt to changing requirements quickly. With horizontal scaling capabilities, high availability, and powerful query features, MongoDB provides an efficient solution for applications dealing with large volumes of diverse and rapidly changing data.</p>
+                <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"></svg>
+                <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
+                </svg>
+                <i class="bi bi-brain"></i>
+                </div>
+                </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item item-cyan position-relative">
+            <img src="assets/img/linux.jpg" alt="Machine Learning" class="img-fluid" style="margin-bottom:15px;">
+            <a href="blog1.html" class="stretched-link">
+            <h3>Linux</h3>
+            </a>
+            <p>Linux is a free and open-source operating system kernel that forms the foundation of numerous distributions. Known for its stability, security, and flexibility, Linux powers everything from personal computers to servers, embedded systems, and supercomputers. Its robust command-line interface, extensive software repositories, and customizable nature make it the preferred choice for developers, system administrators, and organizations seeking reliable and cost-effective computing solutions.</p>
+            <div class="icon">
+            <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"></svg>
+            <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
+            </svg>
+            <i class="bi bi-brain"></i>
+            </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item item-cyan position-relative">
+            <img src="assets/img/cassandra.png" alt="Machine Learning" class="img-fluid" style="margin-bottom:15px;">
+            <a href="blog1.html" class="stretched-link">
+            <h3>Apache Cassandra</h3>
+            </a>
+            <p>Apache Cassandra is a highly scalable, distributed NoSQL database designed to handle large amounts of data across many commodity servers. Known for its exceptional performance, linear scalability, and fault tolerance, Cassandra provides high availability with no single point of failure, making it ideal for mission-critical applications that require reliability and global data distribution.</p>
+            <div class="icon">
+            <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"></svg>
+            <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
+            </svg>
+            <i class="bi bi-brain"></i>
+            </div>
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Kontakt</h2>
+        <p class="typed-message" data-typed-message="Skontaktuj się ze mną, aby omówić współpracę lub projekty."></p>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            // Add CSS style for larger text
+            document.querySelector('.typed-message').style.fontSize = '1.2rem';
+            
+            new Typed('.typed-message', {
+              strings: ['Skontaktuj się ze mną, aby omówić współpracę lub projekty.', ''],
+              typeSpeed: 50,
+              backSpeed: 30,
+              loop: true,
+              showCursor: true,
+              cursorChar: '|',
+              backDelay: 2000,
+              startDelay: 1000
+            });
+          });
+        </script>
+      </div>
+      <div class="container" data-aos="fade" data-aos-delay="100">
+        <div class="row gy-4">
+          <div class="col-lg-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Lokalizacja</h3>
+                <p>Warszawa, Polska</p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Telefon</h3>
+                <p>787-980-229</p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email</h3>
+                <p>lukaszpochmara@gmail.com</p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+              <i class="bi bi-linkedin flex-shrink-0"></i>
+              <div>
+                <h3>LinkedIn</h3>
+                <p><a href="https://www.linkedin.com/in/%C5%82ukasz-pochmara/">Profil LinkedIn</a></p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="600">
+              <i class="bi bi-github flex-shrink-0"></i>
+              <div>
+              <h3>GitHub</h3>
+              <p><a href="https://github.com/lukaszpochmara" target="_blank">Profil GitHub</a></p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="700">
+              <i class="bi bi-journal-text flex-shrink-0"></i>
+              <div>
+              <h3>Blog</h3>
+              <p><a href="blog.html" target="_blank">Przejdź do bloga</a></p>
+              </div>
+            </div>
+            </div>
+            <div class="col-lg-8">
+            <form id="contactForm" action="https://formspree.io/f/myzeqgjg" method="POST" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Twoje Imię" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="email" name="email" class="form-control" placeholder="Twój Email" required>
+                </div>
+                <div class="col-12">
+                  <input type="text" name="subject" class="form-control" placeholder="Temat" required>
+                </div>
+                <div class="col-12">
+                  <textarea name="message" class="form-control" rows="6" placeholder="Wiadomość" required></textarea>
+                </div>
+                <div class="col-12">
+                  <div id="successMessage" class="alert alert-success" style="display: none;">
+                    Wiadomość została wysłana pomyślnie!
+                  </div>
+                </div>
+                <div class="col-12 text-center"></div>
+                  <button type="submit" class="btn btn-primary">Wyślij Wiadomość</button>
+                </div>
+              </div>
+            </form>
+            <script>1
+              function showSuccessMessage(event) {
+                event.preventDefault();
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('contactForm').reset();
+                setTimeout(() => {
+                  document.getElementById('successMessage').style.display = 'none';
+                }, 3000);
+              }
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      document.getElementById('contactForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      
+      const form = event.target;
+      const formData = new FormData(form);
+      
+      try {
+        const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+        });
+      
+        if (response.ok) {
+        document.getElementById('successMessage').style.display = 'block';
+        form.reset();
+        setTimeout(() => {
+          document.getElementById('successMessage').style.display = 'none';
+        }, 3000);
+        } else {
+        alert("Wystąpił problem z wysłaniem wiadomości.");
+        }
+      } catch (error) {
+        alert("Nie udało się wysłać formularza. Spróbuj ponownie.");
+      }
+      });
+    </script>
+    
+    <!-- Sitemap Link -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Preloader removed -->
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -10,6 +10,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
         .certificate-img {
             max-width: 90vw;
@@ -17,10 +18,24 @@
             border: 4px solid #2c3e50;
             border-radius: 16px;
             box-shadow: 0 4px 24px rgba(44,62,80,0.08);
+            transform-origin: center center;
+            transition: transform 0.1s ease;
         }
     </style>
 </head>
 <body>
-    <img src="assets/img/Certyfikat_ALX_Python.png" alt="Certyfikat" class="certificate-img">
+    <img src="assets/img/Certyfikat_ALX_Python.png" alt="Certyfikat" class="certificate-img" id="certificate">
+
+    <script>
+        const certificate = document.getElementById('certificate');
+        let scale = 1;
+
+        certificate.addEventListener('wheel', (event) => {
+            event.preventDefault();
+            scale += event.deltaY * -0.001; // Adjust zoom sensitivity
+            scale = Math.min(Math.max(0.5, scale), 3); // Limit zoom level
+            certificate.style.transform = `scale(${scale})`;
+        });
+    </script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Starter Page - MyResume Bootstrap Template</title>
+  <title>Starter Page - </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -38,10 +38,8 @@
 
     <nav id="navmenu" class="navmenu">
       <ul>
-        <li><a href="#hero"><i class="bi bi-house navicon"></i><span>Home</span></a></li>
-        <li><a href="#about"><i class="bi bi-person navicon"></i><span>About</span></a></li>
-        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i><span>Resume</span></a></li>
-        <li><a href="#portfolio"><i class="bi bi-images navicon"></i><span>Portfolio</span></a></li>
+        <li><a href="index.html"><i class="bi bi-house navicon"></i><span>Home</span></a></li>
+        <li><a href="index.html#About"><i class="bi bi-person navicon"></i><span>About</span></a></li>
         <li><a href="#services"><i class="bi bi-hdd-stack navicon"></i><span>Services</span></a></li>
         <li><a href="#contact"><i class="bi bi-envelope navicon"></i><span>Contact</span></a></li>
       </ul>
@@ -124,6 +122,149 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+ <!-- Contact Section -->
+    <section id="contact" class="contact section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Kontakt</h2>
+        <p class="typed-message" data-typed-message="Skontaktuj się ze mną, aby omówić współpracę lub projekty."></p>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            // Add CSS style for larger text
+            document.querySelector('.typed-message').style.fontSize = '1.2rem';
+            
+            new Typed('.typed-message', {
+              strings: ['Skontaktuj się ze mną, aby omówić współpracę lub projekty.', ''],
+              typeSpeed: 50,
+              backSpeed: 30,
+              loop: true,
+              showCursor: true,
+              cursorChar: '|',
+              backDelay: 2000,
+              startDelay: 1000
+            });
+          });
+        </script>
+      </div>
+      <div class="container" data-aos="fade" data-aos-delay="100">
+        <div class="row gy-4">
+          <div class="col-lg-4">
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-geo-alt flex-shrink-0"></i>
+              <div>
+                <h3>Lokalizacja</h3>
+                <p>Warszawa, Polska</p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-telephone flex-shrink-0"></i>
+              <div>
+                <h3>Telefon</h3>
+                <p>787-980-229</p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-envelope flex-shrink-0"></i>
+              <div>
+                <h3>Email</h3>
+                <p>lukaszpochmara@gmail.com</p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+              <i class="bi bi-linkedin flex-shrink-0"></i>
+              <div>
+                <h3>LinkedIn</h3>
+                <p><a href="https://www.linkedin.com/in/%C5%82ukasz-pochmara/">Profil LinkedIn</a></p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="600">
+              <i class="bi bi-github flex-shrink-0"></i>
+              <div>
+              <h3>GitHub</h3>
+              <p><a href="https://github.com/lukaszpochmara" target="_blank">Profil GitHub</a></p>
+              </div>
+            </div>
+            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="700">
+              <i class="bi bi-journal-text flex-shrink-0"></i>
+              <div>
+              <h3>Blog</h3>
+              <p><a href="blog.html" target="_blank">Przejdź do bloga</a></p>
+              </div>
+            </div>
+            </div>
+            <div class="col-lg-8">
+            <form id="contactForm" action="https://formspree.io/f/myzeqgjg" method="POST" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Twoje Imię" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="email" name="email" class="form-control" placeholder="Twój Email" required>
+                </div>
+                <div class="col-12">
+                  <input type="text" name="subject" class="form-control" placeholder="Temat" required>
+                </div>
+                <div class="col-12">
+                  <textarea name="message" class="form-control" rows="6" placeholder="Wiadomość" required></textarea>
+                </div>
+                <div class="col-12">
+                  <div id="successMessage" class="alert alert-success" style="display: none;">
+                    Wiadomość została wysłana pomyślnie!
+                  </div>
+                </div>
+                <div class="col-12 text-center"></div>
+                  <button type="submit" class="btn btn-primary">Wyślij Wiadomość</button>
+                </div>
+              </div>
+            </form>
+            <script>1
+              function showSuccessMessage(event) {
+                event.preventDefault();
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('contactForm').reset();
+                setTimeout(() => {
+                  document.getElementById('successMessage').style.display = 'none';
+                }, 3000);
+              }
+            </script>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      document.getElementById('contactForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+      
+      const form = event.target;
+      const formData = new FormData(form);
+      
+      try {
+        const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+        });
+      
+        if (response.ok) {
+        document.getElementById('successMessage').style.display = 'block';
+        form.reset();
+        setTimeout(() => {
+          document.getElementById('successMessage').style.display = 'none';
+        }, 3000);
+        } else {
+        alert("Wystąpił problem z wysłaniem wiadomości.");
+        }
+      } catch (error) {
+        alert("Nie udało się wysłać formularza. Spróbuj ponownie.");
+      }
+      });
+    </script>
+    
+    <!-- Sitemap Link -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 </body>
 

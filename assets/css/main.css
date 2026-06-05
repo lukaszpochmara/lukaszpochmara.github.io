@@ -165,8 +165,8 @@ h6 {
 }
 
 @media (max-width: 1199px) {
+  .header {
     border-right: 1px solid #e0e0e0; /* Fallback for unsupported browsers */
-    border-right: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
     border-right: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
     width: 300px;
     left: -100%;
@@ -1436,6 +1436,8 @@ section,
   margin-bottom: 10px;
   font-size: 16px;
   line-height: 1.5;
+}
+
 .rounded-image {
   width: 600px; /* Ustaw szerokość */
   height: 600px; /* Ustaw wysokość */
@@ -1444,14 +1446,6 @@ section,
   border: 5px solid #ddd; /* Dodaje obramowanie */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Dodaje delikatny cień */
 }
-}
-/*--------------------------------------------------------------
-# Starter Section Section
---------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
-}
-
 /*--------------------------------------------------------------
 # Clouds Background Styles
 --------------------------------------------------------------*/
@@ -1475,4 +1469,65 @@ section,
 
 @media (max-width: 768px) {
   .cloud-1, .cloud-2, .cloud-3, .cloud-4 { width: 80px !important; }
+}
+/* =========================
+   Embedded Quarto Project
+   ========================= */
+
+.starter-section .container {
+  max-width: 1200px !important;
+}
+
+.quarto-project-wrapper {
+  width: 100% !important;
+  max-width: 1200px !important;
+  height: 900px !important;
+  margin: 40px auto 30px auto !important;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.14);
+}
+
+.quarto-project-frame {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 900px !important;
+  border: none !important;
+  background: #ffffff;
+}
+
+/* trochę większy oddech w sekcji */
+.starter-section {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+/* przyciski pod projektem */
+.starter-section .btn {
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  .starter-section .container {
+    max-width: 100% !important;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .quarto-project-wrapper {
+    height: 760px !important;
+    max-width: 100% !important;
+    border-radius: 12px;
+    margin-top: 25px !important;
+  }
+
+  .quarto-project-frame {
+    min-height: 760px !important;
+  }
 }

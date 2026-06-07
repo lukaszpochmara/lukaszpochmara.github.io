@@ -1,0 +1,163 @@
+[
+  {
+    "objectID": "logistic_regression.html",
+    "href": "logistic_regression.html",
+    "title": "3. Wczytanie danych",
+    "section": "",
+    "text": "import pandas as pd\nimport numpy as np  \nimport matplotlib.pyplot as plt \nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression \nfrom sklearn.metrics import (\n    accuracy_score,\n    precision_score,\n    recall_score,\n    f1_score,\n    confusion_matrix,\n    classification_report,\n    roc_auc_score,\n    roc_curve\n)\ndf = pd.read_csv(\"data/titanic.csv\")\ndf.head()\n\n\n\n\n\n\n\n\nPassengerId\nSurvived\nPclass\nName\nSex\nAge\nSibSp\nParch\nTicket\nFare\nCabin\nEmbarked\n\n\n\n\n0\n1\n0\n3\nBraund, Mr. Owen Harris\nmale\n22.0\n1\n0\nA/5 21171\n7.2500\nNaN\nS\n\n\n1\n2\n1\n1\nCumings, Mrs. John Bradley (Florence Briggs Th...\nfemale\n38.0\n1\n0\nPC 17599\n71.2833\nC85\nC\n\n\n2\n3\n1\n3\nHeikkinen, Miss. Laina\nfemale\n26.0\n0\n0\nSTON/O2. 3101282\n7.9250\nNaN\nS\n\n\n3\n4\n1\n1\nFutrelle, Mrs. Jacques Heath (Lily May Peel)\nfemale\n35.0\n1\n0\n113803\n53.1000\nC123\nS\n\n\n4\n5\n0\n3\nAllen, Mr. William Henry\nmale\n35.0\n0\n0\n373450\n8.0500\nNaN\nS\nZmienna celu to:"
+  },
+  {
+    "objectID": "logistic_regression.html#podstawowe-informacje-o-zbiorze-danych",
+    "href": "logistic_regression.html#podstawowe-informacje-o-zbiorze-danych",
+    "title": "3. Wczytanie danych",
+    "section": "1 4. Podstawowe informacje o zbiorze danych",
+    "text": "1 4. Podstawowe informacje o zbiorze danych\nNa początku sprawdzam strukturę danych: liczbę wierszy, kolumn, typy danych oraz braki danych.\n\ndf.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 891 entries, 0 to 890\nData columns (total 12 columns):\n #   Column       Non-Null Count  Dtype  \n---  ------       --------------  -----  \n 0   PassengerId  891 non-null    int64  \n 1   Survived     891 non-null    int64  \n 2   Pclass       891 non-null    int64  \n 3   Name         891 non-null    object \n 4   Sex          891 non-null    object \n 5   Age          714 non-null    float64\n 6   SibSp        891 non-null    int64  \n 7   Parch        891 non-null    int64  \n 8   Ticket       891 non-null    object \n 9   Fare         891 non-null    float64\n 10  Cabin        204 non-null    object \n 11  Embarked     889 non-null    object \ndtypes: float64(2), int64(5), object(5)\nmemory usage: 83.7+ KB\n\n\nSprawdzam rozmiar zbioru danych.\n\ndf.shape\n\n(891, 12)\n\n\nSprawdzam nazwy kolumn.\n\ndf.columns\n\nIndex(['PassengerId', 'Survived', 'Pclass', 'Name', 'Sex', 'Age', 'SibSp',\n       'Parch', 'Ticket', 'Fare', 'Cabin', 'Embarked'],\n      dtype='object')"
+  },
+  {
+    "objectID": "logistic_regression.html#statystyki-opisowe",
+    "href": "logistic_regression.html#statystyki-opisowe",
+    "title": "3. Wczytanie danych",
+    "section": "2 5. Statystyki opisowe",
+    "text": "2 5. Statystyki opisowe\nDla zmiennych liczbowych sprawdzam podstawowe statystyki opisowe.\n\ndf.describe()\n\n\n\n\n\n\n\n\nPassengerId\nSurvived\nPclass\nAge\nSibSp\nParch\nFare\n\n\n\n\ncount\n891.000000\n891.000000\n891.000000\n714.000000\n891.000000\n891.000000\n891.000000\n\n\nmean\n446.000000\n0.383838\n2.308642\n29.699118\n0.523008\n0.381594\n32.204208\n\n\nstd\n257.353842\n0.486592\n0.836071\n14.526497\n1.102743\n0.806057\n49.693429\n\n\nmin\n1.000000\n0.000000\n1.000000\n0.420000\n0.000000\n0.000000\n0.000000\n\n\n25%\n223.500000\n0.000000\n2.000000\n20.125000\n0.000000\n0.000000\n7.910400\n\n\n50%\n446.000000\n0.000000\n3.000000\n28.000000\n0.000000\n0.000000\n14.454200\n\n\n75%\n668.500000\n1.000000\n3.000000\n38.000000\n1.000000\n0.000000\n31.000000\n\n\nmax\n891.000000\n1.000000\n3.000000\n80.000000\n8.000000\n6.000000\n512.329200"
+  },
+  {
+    "objectID": "logistic_regression.html#braki-danych",
+    "href": "logistic_regression.html#braki-danych",
+    "title": "3. Wczytanie danych",
+    "section": "3 6. Braki danych",
+    "text": "3 6. Braki danych\nSprawdzam liczbę braków danych w każdej kolumnie.\n\ndf.isna().sum()\n\nPassengerId      0\nSurvived         0\nPclass           0\nName             0\nSex              0\nAge            177\nSibSp            0\nParch            0\nTicket           0\nFare             0\nCabin          687\nEmbarked         2\ndtype: int64\n\n\nSprawdzam procent braków danych.\n\nmissing_percent = df.isna().mean() * 100\nmissing_percent.sort_values(ascending=False)\n\nCabin          77.104377\nAge            19.865320\nEmbarked        0.224467\nPassengerId     0.000000\nName            0.000000\nPclass          0.000000\nSurvived        0.000000\nSex             0.000000\nParch           0.000000\nSibSp           0.000000\nFare            0.000000\nTicket          0.000000\ndtype: float64\n\n\n\nW danych Titanic szczególnie problematyczna jest kolumna Cabin, ponieważ ma bardzo dużo braków danych.\nW prostym modelu nie będę jej używać, ponieważ wymagałaby dodatkowego przetwarzania."
+  },
+  {
+    "objectID": "logistic_regression.html#rozkład-zmiennej-celu",
+    "href": "logistic_regression.html#rozkład-zmiennej-celu",
+    "title": "3. Wczytanie danych",
+    "section": "4 7. Rozkład zmiennej celu",
+    "text": "4 7. Rozkład zmiennej celu\nSprawdzam, ilu pasażerów przeżyło, a ilu nie przeżyło.\n\ndf[\"Survived\"].value_counts()\n\nSurvived\n0    549\n1    342\nName: count, dtype: int64\n\n\nSprawdzam proporcje klas.\n\ndf[\"Survived\"].value_counts(normalize=True) * 100\n\nSurvived\n0    61.616162\n1    38.383838\nName: proportion, dtype: float64\n\n\n\nsurvival_counts = df[\"Survived\"].value_counts()\n\nplt.figure(figsize=(6, 4))\nplt.bar([\"Nie przeżył\", \"Przeżył\"], survival_counts.values)\nplt.title(\"Rozkład zmiennej celu: Survived\")\nplt.xlabel(\"Klasa\")\nplt.ylabel(\"Liczba pasażerów\")\nplt.show()"
+  },
+  {
+    "objectID": "logistic_regression.html#wybór-kolumn-do-pierwszego-modelu",
+    "href": "logistic_regression.html#wybór-kolumn-do-pierwszego-modelu",
+    "title": "3. Wczytanie danych",
+    "section": "5 8. Wybór kolumn do pierwszego modelu",
+    "text": "5 8. Wybór kolumn do pierwszego modelu\nDo pierwszej wersji modelu wybieram tylko kilka prostych i zrozumiałych cech.\n\ncolumns = [\n    \"Survived\",\n    \"Pclass\",\n    \"Sex\",\n    \"Age\",\n    \"SibSp\",\n    \"Parch\",\n    \"Fare\",\n    \"Embarked\"\n]\n\ndf_model = df[columns].copy()\ndf_model.head()\n\n\n\n\n\n\n\n\nSurvived\nPclass\nSex\nAge\nSibSp\nParch\nFare\nEmbarked\n\n\n\n\n0\n0\n3\nmale\n22.0\n1\n0\n7.2500\nS\n\n\n1\n1\n1\nfemale\n38.0\n1\n0\n71.2833\nC\n\n\n2\n1\n3\nfemale\n26.0\n0\n0\n7.9250\nS\n\n\n3\n1\n1\nfemale\n35.0\n1\n0\n53.1000\nS\n\n\n4\n0\n3\nmale\n35.0\n0\n0\n8.0500\nS\n\n\n\n\n\n\n\nWybrane cechy:\n\n\n\nKolumna\nZnaczenie\n\n\n\n\nPclass\nklasa biletu\n\n\nSex\npłeć pasażera\n\n\nAge\nwiek pasażera\n\n\nSibSp\nliczba rodzeństwa/małżonka na pokładzie\n\n\nParch\nliczba rodziców/dzieci na pokładzie\n\n\nFare\ncena biletu\n\n\nEmbarked\nport wejścia na pokład\n\n\nSurvived\nzmienna celu"
+  },
+  {
+    "objectID": "logistic_regression.html#czyszczenie-danych-wybranych-do-modelu",
+    "href": "logistic_regression.html#czyszczenie-danych-wybranych-do-modelu",
+    "title": "3. Wczytanie danych",
+    "section": "6 9. Czyszczenie danych wybranych do modelu",
+    "text": "6 9. Czyszczenie danych wybranych do modelu\nPo wybraniu kolumn do modelu sprawdzam, czy w tych danych występują braki.\n\ndf_model.isna().sum()\n\nSurvived      0\nPclass        0\nSex           0\nAge         177\nSibSp         0\nParch         0\nFare          0\nEmbarked      2\ndtype: int64\n\n\nW kolumnie Age występują braki danych.\nUzupełniam je medianą, ponieważ mediana jest bardziej odporna na wartości odstające niż średnia.\n\nage_median = df_model[\"Age\"].median()\nage_median\n\nnp.float64(28.0)\n\n\n\ndf_model[\"Age\"] = df_model[\"Age\"].fillna(age_median)\n\nW kolumnie Embarked braki uzupełniam dominantą, czyli najczęściej występującą wartością.\n\nembarked_mode = df_model[\"Embarked\"].mode()[0]\nembarked_mode\n\n'S'\n\n\n\ndf_model[\"Embarked\"] = df_model[\"Embarked\"].fillna(embarked_mode)\n\nPo imputacji ponownie sprawdzam braki danych.\n\ndf_model.isna().sum()\n\nSurvived    0\nPclass      0\nSex         0\nAge         0\nSibSp       0\nParch       0\nFare        0\nEmbarked    0\ndtype: int64\n\n\n\nW tym projekcie stosuję proste metody imputacji, ponieważ celem jest zbudowanie czytelnego pierwszego modelu regresji logistycznej. W bardziej zaawansowanym projekcie można byłoby użyć imputacji w pipeline ze scikit-learn."
+  },
+  {
+    "objectID": "logistic_regression.html#kodowanie-zmiennych-kategorycznych",
+    "href": "logistic_regression.html#kodowanie-zmiennych-kategorycznych",
+    "title": "3. Wczytanie danych",
+    "section": "7 10. Kodowanie zmiennych kategorycznych",
+    "text": "7 10. Kodowanie zmiennych kategorycznych\nRegresja logistyczna w scikit-learn wymaga danych liczbowych.\nDlatego zmienne tekstowe muszą zostać zakodowane.\nW tym projekcie koduję zmienne:\n\nSex,\nEmbarked.\n\nUżywam one-hot encodingu.\n\ndf_model_encoded = pd.get_dummies(\n    df_model,\n    columns=[\"Sex\", \"Embarked\"],\n    drop_first=True\n)\n\ndf_model_encoded.head()\n\n\n\n\n\n\n\n\nSurvived\nPclass\nAge\nSibSp\nParch\nFare\nSex_male\nEmbarked_Q\nEmbarked_S\n\n\n\n\n0\n0\n3\n22.0\n1\n0\n7.2500\nTrue\nFalse\nTrue\n\n\n1\n1\n1\n38.0\n1\n0\n71.2833\nFalse\nFalse\nFalse\n\n\n2\n1\n3\n26.0\n0\n0\n7.9250\nFalse\nFalse\nTrue\n\n\n3\n1\n1\n35.0\n1\n0\n53.1000\nFalse\nFalse\nTrue\n\n\n4\n0\n3\n35.0\n0\n0\n8.0500\nTrue\nFalse\nTrue\n\n\n\n\n\n\n\nSprawdzam typy danych po kodowaniu.\n\ndf_model_encoded.dtypes\n\nSurvived        int64\nPclass          int64\nAge           float64\nSibSp           int64\nParch           int64\nFare          float64\nSex_male         bool\nEmbarked_Q       bool\nEmbarked_S       bool\ndtype: object\n\n\n\nParametr drop_first=True usuwa pierwszą kategorię po one-hot encodingu.\nDzięki temu unikamy tworzenia nadmiarowych kolumn, które niosłyby tę samą informację."
+  },
+  {
+    "objectID": "logistic_regression.html#podział-danych-na-cechy-i-zmienną-celu",
+    "href": "logistic_regression.html#podział-danych-na-cechy-i-zmienną-celu",
+    "title": "3. Wczytanie danych",
+    "section": "8 11. Podział danych na cechy i zmienną celu",
+    "text": "8 11. Podział danych na cechy i zmienną celu\nZmienna Survived jest zmienną celu, czyli tym, co model ma przewidywać.\n\nX = df_model_encoded.drop(columns=\"Survived\")\ny = df_model_encoded[\"Survived\"]\n\nPodgląd cech wejściowych:\n\nX.head()\n\n\n\n\n\n\n\n\nPclass\nAge\nSibSp\nParch\nFare\nSex_male\nEmbarked_Q\nEmbarked_S\n\n\n\n\n0\n3\n22.0\n1\n0\n7.2500\nTrue\nFalse\nTrue\n\n\n1\n1\n38.0\n1\n0\n71.2833\nFalse\nFalse\nFalse\n\n\n2\n3\n26.0\n0\n0\n7.9250\nFalse\nFalse\nTrue\n\n\n3\n1\n35.0\n1\n0\n53.1000\nFalse\nFalse\nTrue\n\n\n4\n3\n35.0\n0\n0\n8.0500\nTrue\nFalse\nTrue\n\n\n\n\n\n\n\nPodgląd zmiennej celu:\n\ny.head()\n\n0    0\n1    1\n2    1\n3    1\n4    0\nName: Survived, dtype: int64"
+  },
+  {
+    "objectID": "logistic_regression.html#podział-na-zbiór-treningowy-i-testowy",
+    "href": "logistic_regression.html#podział-na-zbiór-treningowy-i-testowy",
+    "title": "3. Wczytanie danych",
+    "section": "9 12. Podział na zbiór treningowy i testowy",
+    "text": "9 12. Podział na zbiór treningowy i testowy\nDane dzielę na zbiór treningowy i testowy.\nZbiór treningowy służy do uczenia modelu.\nZbiór testowy służy do sprawdzenia, jak model działa na nowych danych.\n\nX_train, X_test, y_train, y_test = train_test_split(\n    X,\n    y,\n    test_size=0.2,\n    random_state=42,\n    stratify=y\n)\n\nSprawdzam rozmiary zbiorów.\n\nX_train.shape, X_test.shape\n\n((712, 8), (179, 8))\n\n\nSprawdzam, czy proporcje klas są podobne w zbiorze treningowym i testowym.\n\ny_train.value_counts(normalize=True) * 100\n\nSurvived\n0    61.657303\n1    38.342697\nName: proportion, dtype: float64\n\n\n\ny_test.value_counts(normalize=True) * 100\n\nSurvived\n0    61.452514\n1    38.547486\nName: proportion, dtype: float64\n\n\n\nParametr stratify=y sprawia, że proporcje klas zmiennej celu są podobne w zbiorze treningowym i testowym.\nTo ważne szczególnie wtedy, gdy klasy nie są idealnie zbalansowane."
+  },
+  {
+    "objectID": "logistic_regression.html#trenowanie-modelu-regresji-logistycznej",
+    "href": "logistic_regression.html#trenowanie-modelu-regresji-logistycznej",
+    "title": "3. Wczytanie danych",
+    "section": "10 13. Trenowanie modelu regresji logistycznej",
+    "text": "10 13. Trenowanie modelu regresji logistycznej\nTworzę model regresji logistycznej.\n\nmodel = LogisticRegression(max_iter=1000)\n\nTrenuję model na zbiorze treningowym.\n\nmodel.fit(X_train, y_train)\n\nLogisticRegression(max_iter=1000)In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.LogisticRegression?Documentation for LogisticRegressioniFitted\n        \n            \n                Parameters\n                \n\n\n\n\n\n\n\n\n\npenalty penalty: {'l1', 'l2', 'elasticnet', None}, default='l2'\n\nSpecify the norm of the penalty:\n\n- `None`: no penalty is added;\n- `'l2'`: add a L2 penalty term and it is the default choice;\n- `'l1'`: add a L1 penalty term;\n- `'elasticnet'`: both L1 and L2 penalty terms are added.\n\n.. warning::\nSome penalties may not work with some solvers. See the parameter\n`solver` below, to know the compatibility between the penalty and\nsolver.\n\n.. versionadded:: 0.19\nl1 penalty with SAGA solver (allowing 'multinomial' + L1)\n\n.. deprecated:: 1.8\n`penalty` was deprecated in version 1.8 and will be removed in 1.10.\nUse `l1_ratio` instead. `l1_ratio=0` for `penalty='l2'`, `l1_ratio=1` for\n`penalty='l1'` and `l1_ratio` set to any float between 0 and 1 for\n`'penalty='elasticnet'`.\n'deprecated'\n\n\n\nC C: float, default=1.0\n\nInverse of regularization strength; must be a positive float.\nLike in support vector machines, smaller values specify stronger\nregularization. `C=np.inf` results in unpenalized logistic regression.\nFor a visual example on the effect of tuning the `C` parameter\nwith an L1 penalty, see:\n:ref:`sphx_glr_auto_examples_linear_model_plot_logistic_path.py`.\n1.0\n\n\n\nl1_ratio l1_ratio: float, default=0.0\n\nThe Elastic-Net mixing parameter, with `0 &lt;= l1_ratio &lt;= 1`. Setting\n`l1_ratio=1` gives a pure L1-penalty, setting `l1_ratio=0` a pure L2-penalty.\nAny value between 0 and 1 gives an Elastic-Net penalty of the form\n`l1_ratio * L1 + (1 - l1_ratio) * L2`.\n\n.. warning::\nCertain values of `l1_ratio`, i.e. some penalties, may not work with some\nsolvers. See the parameter `solver` below, to know the compatibility between\nthe penalty and solver.\n\n.. versionchanged:: 1.8\nDefault value changed from None to 0.0.\n\n.. deprecated:: 1.8\n`None` is deprecated and will be removed in version 1.10. Always use\n`l1_ratio` to specify the penalty type.\n0.0\n\n\n\ndual dual: bool, default=False\n\nDual (constrained) or primal (regularized, see also\n:ref:`this equation `) formulation. Dual formulation\nis only implemented for l2 penalty with liblinear solver. Prefer `dual=False`\nwhen n_samples &gt; n_features.\nFalse\n\n\n\ntol tol: float, default=1e-4\n\nTolerance for stopping criteria.\n0.0001\n\n\n\nfit_intercept fit_intercept: bool, default=True\n\nSpecifies if a constant (a.k.a. bias or intercept) should be\nadded to the decision function.\nTrue\n\n\n\nintercept_scaling intercept_scaling: float, default=1\n\nUseful only when the solver `liblinear` is used\nand `self.fit_intercept` is set to `True`. In this case, `x` becomes\n`[x, self.intercept_scaling]`,\ni.e. a \"synthetic\" feature with constant value equal to\n`intercept_scaling` is appended to the instance vector.\nThe intercept becomes\n``intercept_scaling * synthetic_feature_weight``.\n\n.. note::\nThe synthetic feature weight is subject to L1 or L2\nregularization as all other features.\nTo lessen the effect of regularization on synthetic feature weight\n(and therefore on the intercept) `intercept_scaling` has to be increased.\n1\n\n\n\nclass_weight class_weight: dict or 'balanced', default=None\n\nWeights associated with classes in the form ``{class_label: weight}``.\nIf not given, all classes are supposed to have weight one.\n\nThe \"balanced\" mode uses the values of y to automatically adjust\nweights inversely proportional to class frequencies in the input data\nas ``n_samples / (n_classes * np.bincount(y))``.\n\nNote that these weights will be multiplied with sample_weight (passed\nthrough the fit method) if sample_weight is specified.\n\n.. versionadded:: 0.17\n*class_weight='balanced'*\nNone\n\n\n\nrandom_state random_state: int, RandomState instance, default=None\n\nUsed when ``solver`` == 'sag', 'saga' or 'liblinear' to shuffle the\ndata. See :term:`Glossary ` for details.\nNone\n\n\n\nsolver solver: {'lbfgs', 'liblinear', 'newton-cg', 'newton-cholesky', 'sag', 'saga'}, default='lbfgs'\n\nAlgorithm to use in the optimization problem. Default is 'lbfgs'.\nTo choose a solver, you might want to consider the following aspects:\n\n- 'lbfgs' is a good default solver because it works reasonably well for a wide\nclass of problems.\n- For :term:`multiclass` problems (`n_classes &gt;= 3`), all solvers except\n'liblinear' minimize the full multinomial loss, 'liblinear' will raise an\nerror.\n- 'newton-cholesky' is a good choice for\n`n_samples` &gt;&gt; `n_features * n_classes`, especially with one-hot encoded\ncategorical features with rare categories. Be aware that the memory usage\nof this solver has a quadratic dependency on `n_features * n_classes`\nbecause it explicitly computes the full Hessian matrix.\n- For small datasets, 'liblinear' is a good choice, whereas 'sag'\nand 'saga' are faster for large ones;\n- 'liblinear' can only handle binary classification by default. To apply a\none-versus-rest scheme for the multiclass setting one can wrap it with the\n:class:`~sklearn.multiclass.OneVsRestClassifier`.\n\n.. warning::\nThe choice of the algorithm depends on the penalty chosen (`l1_ratio=0`\nfor L2-penalty, `l1_ratio=1` for L1-penalty and `0 &lt; l1_ratio &lt; 1` for\nElastic-Net) and on (multinomial) multiclass support:\n\n================= ======================== ======================\nsolver l1_ratio multinomial multiclass\n================= ======================== ======================\n'lbfgs' l1_ratio=0 yes\n'liblinear' l1_ratio=1 or l1_ratio=0 no\n'newton-cg' l1_ratio=0 yes\n'newton-cholesky' l1_ratio=0 yes\n'sag' l1_ratio=0 yes\n'saga' 0&lt;=l1_ratio&lt;=1 yes\n================= ======================== ======================\n\n.. note::\n'sag' and 'saga' fast convergence is only guaranteed on features\nwith approximately the same scale. You can preprocess the data with\na scaler from :mod:`sklearn.preprocessing`.\n\n.. seealso::\nRefer to the :ref:`User Guide ` for more\ninformation regarding :class:`LogisticRegression` and more specifically the\n:ref:`Table `\nsummarizing solver/penalty supports.\n\n.. versionadded:: 0.17\nStochastic Average Gradient (SAG) descent solver. Multinomial support in\nversion 0.18.\n.. versionadded:: 0.19\nSAGA solver.\n.. versionchanged:: 0.22\nThe default solver changed from 'liblinear' to 'lbfgs' in 0.22.\n.. versionadded:: 1.2\nnewton-cholesky solver. Multinomial support in version 1.6.\n'lbfgs'\n\n\n\nmax_iter max_iter: int, default=100\n\nMaximum number of iterations taken for the solvers to converge.\n1000\n\n\n\nverbose verbose: int, default=0\n\nFor the liblinear and lbfgs solvers set verbose to any positive\nnumber for verbosity.\n0\n\n\n\nwarm_start warm_start: bool, default=False\n\nWhen set to True, reuse the solution of the previous call to fit as\ninitialization, otherwise, just erase the previous solution.\nUseless for liblinear solver. See :term:`the Glossary `.\n\n.. versionadded:: 0.17\n*warm_start* to support *lbfgs*, *newton-cg*, *sag*, *saga* solvers.\nFalse\n\n\n\nn_jobs n_jobs: int, default=None\n\nDoes not have any effect.\n\n.. deprecated:: 1.8\n`n_jobs` is deprecated in version 1.8 and will be removed in 1.10.\nNone\n\n\n\n\n            \n        \n    \n\n\n\nMetoda fit() oznacza uczenie modelu.\nModel szuka zależności między cechami pasażera a tym, czy pasażer przeżył katastrofę."
+  },
+  {
+    "objectID": "logistic_regression.html#predykcja-na-zbiorze-testowym",
+    "href": "logistic_regression.html#predykcja-na-zbiorze-testowym",
+    "title": "3. Wczytanie danych",
+    "section": "11 14. Predykcja na zbiorze testowym",
+    "text": "11 14. Predykcja na zbiorze testowym\nPo wytrenowaniu modelu wykonuję predykcję na zbiorze testowym.\n\ny_pred = model.predict(X_test)\n\nPierwsze przewidywania modelu:\n\ny_pred[:10]\n\narray([0, 0, 0, 0, 1, 0, 1, 0, 0, 0])\n\n\nRegresja logistyczna może także zwracać prawdopodobieństwa klas.\n\ny_proba = model.predict_proba(X_test)\ny_proba[:5]\n\narray([[0.93000754, 0.06999246],\n       [0.95065264, 0.04934736],\n       [0.84251692, 0.15748308],\n       [0.96320496, 0.03679504],\n       [0.3309634 , 0.6690366 ]])\n\n\nDruga kolumna oznacza prawdopodobieństwo klasy 1, czyli przeżycia.\n\nsurvival_probability = y_proba[:, 1]\nsurvival_probability[:10]\n\narray([0.06999246, 0.04934736, 0.15748308, 0.03679504, 0.6690366 ,\n       0.43514154, 0.74382998, 0.32786299, 0.35035195, 0.1636116 ])"
+  },
+  {
+    "objectID": "logistic_regression.html#ocena-jakości-modelu",
+    "href": "logistic_regression.html#ocena-jakości-modelu",
+    "title": "3. Wczytanie danych",
+    "section": "12 15. Ocena jakości modelu",
+    "text": "12 15. Ocena jakości modelu\nDo oceny modelu klasyfikacyjnego używam kilku metryk:\n\naccuracy,\nprecision,\nrecall,\nF1-score.\n\n\naccuracy = accuracy_score(y_test, y_pred)\nprecision = precision_score(y_test, y_pred)\nrecall = recall_score(y_test, y_pred)\nf1 = f1_score(y_test, y_pred)\n\nmetrics = pd.DataFrame({\n    \"Metryka\": [\"Accuracy\", \"Precision\", \"Recall\", \"F1-score\"],\n    \"Wynik\": [accuracy, precision, recall, f1]\n})\n\nmetrics\n\n\n\n\n\n\n\n\nMetryka\nWynik\n\n\n\n\n0\nAccuracy\n0.804469\n\n\n1\nPrecision\n0.793103\n\n\n2\nRecall\n0.666667\n\n\n3\nF1-score\n0.724409\n\n\n\n\n\n\n\nInterpretacja metryk:\n\n\n\nMetryka\nZnaczenie\n\n\n\n\nAccuracy\nJaki procent wszystkich predykcji był poprawny\n\n\nPrecision\nIle osób przewidzianych jako „przeżył” naprawdę przeżyło\n\n\nRecall\nIlu pasażerów, którzy naprawdę przeżyli, model wykrył\n\n\nF1-score\nŁączy precision i recall w jedną metrykę\n\n\n\n\nW klasyfikacji nie warto patrzeć tylko na accuracy.\nPrzy niezbalansowanych klasach accuracy może wyglądać dobrze, mimo że model słabo wykrywa jedną z klas."
+  },
+  {
+    "objectID": "logistic_regression.html#macierz-pomyłek",
+    "href": "logistic_regression.html#macierz-pomyłek",
+    "title": "3. Wczytanie danych",
+    "section": "13 16. Macierz pomyłek",
+    "text": "13 16. Macierz pomyłek\nMacierz pomyłek pokazuje, ile przypadków model sklasyfikował poprawnie i błędnie.\n\ncm = confusion_matrix(y_test, y_pred)\ncm\n\narray([[98, 12],\n       [23, 46]])\n\n\n\nfig, ax = plt.subplots(figsize=(5, 4))\n\nax.imshow(cm)\n\nax.set_title(\"Macierz pomyłek\")\nax.set_xlabel(\"Predykcja modelu\")\nax.set_ylabel(\"Wartość prawdziwa\")\n\nax.set_xticks([0, 1])\nax.set_yticks([0, 1])\n\nax.set_xticklabels([\"Nie przeżył\", \"Przeżył\"])\nax.set_yticklabels([\"Nie przeżył\", \"Przeżył\"])\n\nfor i in range(2):\n    for j in range(2):\n        ax.text(j, i, cm[i, j], ha=\"center\", va=\"center\")\n\nplt.show()\n\n\n\n\n\n\n\n\nW macierzy pomyłek:\n\nlewy górny róg oznacza osoby, które nie przeżyły i model poprawnie przewidział, że nie przeżyły,\nprawy dolny róg oznacza osoby, które przeżyły i model poprawnie przewidział, że przeżyły,\npozostałe pola oznaczają błędy modelu."
+  },
+  {
+    "objectID": "logistic_regression.html#raport-klasyfikacji",
+    "href": "logistic_regression.html#raport-klasyfikacji",
+    "title": "3. Wczytanie danych",
+    "section": "14 17. Raport klasyfikacji",
+    "text": "14 17. Raport klasyfikacji\n\nprint(classification_report(y_test, y_pred))\n\n              precision    recall  f1-score   support\n\n           0       0.81      0.89      0.85       110\n           1       0.79      0.67      0.72        69\n\n    accuracy                           0.80       179\n   macro avg       0.80      0.78      0.79       179\nweighted avg       0.80      0.80      0.80       179\n\n\n\nRaport klasyfikacji pokazuje metryki osobno dla każdej klasy."
+  },
+  {
+    "objectID": "logistic_regression.html#roc-auc-i-krzywa-roc",
+    "href": "logistic_regression.html#roc-auc-i-krzywa-roc",
+    "title": "3. Wczytanie danych",
+    "section": "15 18. ROC AUC i krzywa ROC",
+    "text": "15 18. ROC AUC i krzywa ROC\nOprócz podstawowych metryk klasyfikacji sprawdzam także metrykę ROC AUC.\nROC AUC pokazuje, jak dobrze model rozróżnia klasy 0 i 1.\nIm bliżej wartości 1, tym lepiej. Wynik około 0.5 oznacza model zbliżony do losowego zgadywania.\n\nroc_auc = roc_auc_score(y_test, survival_probability)\nroc_auc\n\n0.8442687747035573\n\n\n\nfpr, tpr, thresholds = roc_curve(y_test, survival_probability)\n\nplt.figure(figsize=(6, 5))\nplt.plot(fpr, tpr, label=f\"ROC AUC = {roc_auc:.3f}\")\nplt.plot([0, 1], [0, 1], linestyle=\"--\", label=\"Model losowy\")\n\nplt.title(\"Krzywa ROC\")\nplt.xlabel(\"False Positive Rate\")\nplt.ylabel(\"True Positive Rate\")\nplt.legend()\nplt.show()\n\n\n\n\n\n\n\n\n\nROC AUC mierzy zdolność modelu do odróżniania pasażerów, którzy przeżyli, od tych, którzy nie przeżyli.\nW tym projekcie ROC AUC jest dobrym uzupełnieniem accuracy, precision, recall i F1-score."
+  },
+  {
+    "objectID": "logistic_regression.html#interpretacja-współczynników-modelu",
+    "href": "logistic_regression.html#interpretacja-współczynników-modelu",
+    "title": "3. Wczytanie danych",
+    "section": "16 19. Interpretacja współczynników modelu",
+    "text": "16 19. Interpretacja współczynników modelu\nRegresja logistyczna pozwala sprawdzić, które cechy zwiększają lub zmniejszają prawdopodobieństwo klasy 1, czyli przeżycia.\n\ncoefficients = pd.DataFrame({\n    \"Cecha\": X.columns,\n    \"Współczynnik\": model.coef_[0]\n}).sort_values(by=\"Współczynnik\", ascending=False)\n\ncoefficients\n\n\n\n\n\n\n\n\nCecha\nWspółczynnik\n\n\n\n\n6\nEmbarked_Q\n0.278980\n\n\n4\nFare\n0.002239\n\n\n1\nAge\n-0.038566\n\n\n3\nParch\n-0.071126\n\n\n2\nSibSp\n-0.244502\n\n\n7\nEmbarked_S\n-0.381482\n\n\n0\nPclass\n-1.092223\n\n\n5\nSex_male\n-2.559300\n\n\n\n\n\n\n\nDodatni współczynnik oznacza, że dana cecha zwiększa szansę przypisania pasażera do klasy 1.\nUjemny współczynnik oznacza, że dana cecha zmniejsza szansę przypisania pasażera do klasy 1.\n\nplt.figure(figsize=(8, 5))\nplt.barh(coefficients[\"Cecha\"], coefficients[\"Współczynnik\"])\nplt.title(\"Współczynniki modelu regresji logistycznej\")\nplt.xlabel(\"Wartość współczynnika\")\nplt.ylabel(\"Cecha\")\nplt.gca().invert_yaxis()\nplt.show()\n\n\n\n\n\n\n\n\n\nWspółczynniki regresji logistycznej nie są bezpośrednio procentami.\nPokazują wpływ cech na logarytm szansy przynależności do klasy 1."
+  },
+  {
+    "objectID": "logistic_regression.html#wnioski-końcowe",
+    "href": "logistic_regression.html#wnioski-końcowe",
+    "title": "3. Wczytanie danych",
+    "section": "17 20. Wnioski końcowe",
+    "text": "17 20. Wnioski końcowe\nW projekcie zbudowano prosty model regresji logistycznej przewidujący przeżycie pasażera Titanica.\nNajważniejsze wnioski:\n\nRegresja logistyczna nadaje się do problemów klasyfikacji binarnej.\nDane przed modelowaniem muszą zostać oczyszczone i zakodowane.\nBraki w wieku uzupełniono medianą, a braki w porcie wejścia dominantą.\nZmienną Sex oraz Embarked zakodowano metodą one-hot encoding.\nModel oceniono za pomocą accuracy, precision, recall i F1-score.\nSama wartość accuracy nie wystarcza do pełnej oceny klasyfikatora.\nInterpretacja współczynników pozwala sprawdzić, które cechy wpływają na predykcję modelu."
+  },
+  {
+    "objectID": "logistic_regression.html#możliwe-dalsze-kroki",
+    "href": "logistic_regression.html#możliwe-dalsze-kroki",
+    "title": "3. Wczytanie danych",
+    "section": "18 21. Możliwe dalsze kroki",
+    "text": "18 21. Możliwe dalsze kroki\nProjekt można rozbudować o:\n\nużycie Pipeline i ColumnTransformer,\nskalowanie zmiennych numerycznych,\nwalidację krzyżową,\nwykres ROC i metrykę ROC AUC,\nporównanie regresji logistycznej z drzewem decyzyjnym,\ndokładniejszą analizę braków danych,\nlepsze wykorzystanie kolumny Cabin,\nstworzenie aplikacji Streamlit do przewidywania przeżycia pasażera."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Regresja logistyczna w praktyce: Titanic",
+    "section": "",
+    "text": "Celem projektu jest zbudowanie prostego modelu regresji logistycznej, który przewiduje, czy pasażer Titanica przeżył katastrofę.\nProjekt pokazuje pełny proces: wczytanie danych, przygotowanie cech, trenowanie modelu, ocenę jakości oraz interpretację wyników."
+  },
+  {
+    "objectID": "index.html#cel-projektu",
+    "href": "index.html#cel-projektu",
+    "title": "Regresja logistyczna w praktyce: Titanic",
+    "section": "",
+    "text": "Celem projektu jest zbudowanie prostego modelu regresji logistycznej, który przewiduje, czy pasażer Titanica przeżył katastrofę.\nProjekt pokazuje pełny proces: wczytanie danych, przygotowanie cech, trenowanie modelu, ocenę jakości oraz interpretację wyników."
+  },
+  {
+    "objectID": "index.html#o-czym-jest-ten-projekt",
+    "href": "index.html#o-czym-jest-ten-projekt",
+    "title": "Regresja logistyczna w praktyce: Titanic",
+    "section": "2 1. O czym jest ten projekt?",
+    "text": "2 1. O czym jest ten projekt?\nRegresja logistyczna jest modelem używanym do klasyfikacji binarnej, czyli do przewidywania jednej z dwóch klas.\nW tym projekcie zmienną celu będzie:\nSurvived = 0 -&gt; pasażer nie przeżył\nSurvived = 1 -&gt; pasażer przeżył"
+  },
+  {
+    "objectID": "index.html#import-bibliotek",
+    "href": "index.html#import-bibliotek",
+    "title": "Regresja logistyczna w praktyce: Titanic",
+    "section": "3 2. Import bibliotek",
+    "text": "3 2. Import bibliotek\n\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score\necho = True"
+  }
+]

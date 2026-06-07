@@ -1,0 +1,488 @@
+```{python}
+import pandas as pd
+import numpy as np  
+import matplotlib.pyplot as plt 
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression 
+from sklearn.metrics import (
+    accuracy_score,
+    precision_score,
+    recall_score,
+    f1_score,
+    confusion_matrix,
+    classification_report,
+    roc_auc_score,
+    roc_curve
+)
+
+```
+## 3. Wczytanie danych
+```{python}
+df = pd.read_csv("data/titanic.csv")
+df.head()
+```
+
+Zmienna celu to:
+
+```text
+Survived
+0 = pasażer nie przeżył
+1 = pasażer przeżył
+```
+
+## 4. Podstawowe informacje o zbiorze danych
+
+Na początku sprawdzam strukturę danych: liczbę wierszy, kolumn, typy danych oraz braki danych.
+
+```{python}
+df.info()
+```
+
+Sprawdzam rozmiar zbioru danych.
+
+```{python}
+df.shape
+```
+
+Sprawdzam nazwy kolumn.
+
+```{python}
+df.columns
+```
+
+## 5. Statystyki opisowe
+
+Dla zmiennych liczbowych sprawdzam podstawowe statystyki opisowe.
+
+```{python}
+df.describe()
+```
+
+## 6. Braki danych
+
+Sprawdzam liczbę braków danych w każdej kolumnie.
+
+```{python}
+df.isna().sum()
+```
+
+Sprawdzam procent braków danych.
+
+```{python}
+missing_percent = df.isna().mean() * 100
+missing_percent.sort_values(ascending=False)
+```
+
+::: {.note-box}
+W danych Titanic szczególnie problematyczna jest kolumna `Cabin`, ponieważ ma bardzo dużo braków danych.  
+W prostym modelu nie będę jej używać, ponieważ wymagałaby dodatkowego przetwarzania.
+:::
+
+## 7. Rozkład zmiennej celu
+
+Sprawdzam, ilu pasażerów przeżyło, a ilu nie przeżyło.
+
+```{python}
+df["Survived"].value_counts()
+```
+
+Sprawdzam proporcje klas.
+
+```{python}
+df["Survived"].value_counts(normalize=True) * 100
+```
+
+```{python}
+survival_counts = df["Survived"].value_counts()
+
+plt.figure(figsize=(6, 4))
+plt.bar(["Nie przeżył", "Przeżył"], survival_counts.values)
+plt.title("Rozkład zmiennej celu: Survived")
+plt.xlabel("Klasa")
+plt.ylabel("Liczba pasażerów")
+plt.show()
+```
+
+## 8. Wybór kolumn do pierwszego modelu
+
+Do pierwszej wersji modelu wybieram tylko kilka prostych i zrozumiałych cech.
+
+```{python}
+columns = [
+    "Survived",
+    "Pclass",
+    "Sex",
+    "Age",
+    "SibSp",
+    "Parch",
+    "Fare",
+    "Embarked"
+]
+
+df_model = df[columns].copy()
+df_model.head()
+```
+
+Wybrane cechy:
+
+| Kolumna | Znaczenie |
+|---|---|
+| `Pclass` | klasa biletu |
+| `Sex` | płeć pasażera |
+| `Age` | wiek pasażera |
+| `SibSp` | liczba rodzeństwa/małżonka na pokładzie |
+| `Parch` | liczba rodziców/dzieci na pokładzie |
+| `Fare` | cena biletu |
+| `Embarked` | port wejścia na pokład |
+| `Survived` | zmienna celu |
+
+## 9. Czyszczenie danych wybranych do modelu
+
+Po wybraniu kolumn do modelu sprawdzam, czy w tych danych występują braki.
+
+```{python}
+df_model.isna().sum()
+```
+
+W kolumnie `Age` występują braki danych.  
+Uzupełniam je medianą, ponieważ mediana jest bardziej odporna na wartości odstające niż średnia.
+
+```{python}
+age_median = df_model["Age"].median()
+age_median
+```
+
+```{python}
+df_model["Age"] = df_model["Age"].fillna(age_median)
+```
+
+W kolumnie `Embarked` braki uzupełniam dominantą, czyli najczęściej występującą wartością.
+
+```{python}
+embarked_mode = df_model["Embarked"].mode()[0]
+embarked_mode
+```
+
+```{python}
+df_model["Embarked"] = df_model["Embarked"].fillna(embarked_mode)
+```
+
+Po imputacji ponownie sprawdzam braki danych.
+
+```{python}
+df_model.isna().sum()
+```
+
+::: {.note-box}
+W tym projekcie stosuję proste metody imputacji, ponieważ celem jest zbudowanie czytelnego pierwszego modelu regresji logistycznej. W bardziej zaawansowanym projekcie można byłoby użyć imputacji w pipeline ze scikit-learn.
+:::
+
+## 10. Kodowanie zmiennych kategorycznych
+
+Regresja logistyczna w `scikit-learn` wymaga danych liczbowych.  
+Dlatego zmienne tekstowe muszą zostać zakodowane.
+
+W tym projekcie koduję zmienne:
+
+- `Sex`,
+- `Embarked`.
+
+Używam one-hot encodingu.
+
+```{python}
+df_model_encoded = pd.get_dummies(
+    df_model,
+    columns=["Sex", "Embarked"],
+    drop_first=True
+)
+
+df_model_encoded.head()
+```
+
+Sprawdzam typy danych po kodowaniu.
+
+```{python}
+df_model_encoded.dtypes
+```
+
+::: {.note-box}
+Parametr `drop_first=True` usuwa pierwszą kategorię po one-hot encodingu.  
+Dzięki temu unikamy tworzenia nadmiarowych kolumn, które niosłyby tę samą informację.
+:::
+
+## 11. Podział danych na cechy i zmienną celu
+
+Zmienna `Survived` jest zmienną celu, czyli tym, co model ma przewidywać.
+
+```{python}
+X = df_model_encoded.drop(columns="Survived")
+y = df_model_encoded["Survived"]
+```
+
+Podgląd cech wejściowych:
+
+```{python}
+X.head()
+```
+
+Podgląd zmiennej celu:
+
+```{python}
+y.head()
+```
+
+## 12. Podział na zbiór treningowy i testowy
+
+Dane dzielę na zbiór treningowy i testowy.
+
+Zbiór treningowy służy do uczenia modelu.  
+Zbiór testowy służy do sprawdzenia, jak model działa na nowych danych.
+
+```{python}
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42,
+    stratify=y
+)
+```
+
+Sprawdzam rozmiary zbiorów.
+
+```{python}
+X_train.shape, X_test.shape
+```
+
+Sprawdzam, czy proporcje klas są podobne w zbiorze treningowym i testowym.
+
+```{python}
+y_train.value_counts(normalize=True) * 100
+```
+
+```{python}
+y_test.value_counts(normalize=True) * 100
+```
+
+::: {.note-box}
+Parametr `stratify=y` sprawia, że proporcje klas zmiennej celu są podobne w zbiorze treningowym i testowym.  
+To ważne szczególnie wtedy, gdy klasy nie są idealnie zbalansowane.
+:::
+
+## 13. Trenowanie modelu regresji logistycznej
+
+Tworzę model regresji logistycznej.
+
+```{python}
+model = LogisticRegression(max_iter=1000)
+```
+
+Trenuję model na zbiorze treningowym.
+
+```{python}
+model.fit(X_train, y_train)
+```
+
+::: {.note-box}
+Metoda `fit()` oznacza uczenie modelu.  
+Model szuka zależności między cechami pasażera a tym, czy pasażer przeżył katastrofę.
+:::
+
+## 14. Predykcja na zbiorze testowym
+
+Po wytrenowaniu modelu wykonuję predykcję na zbiorze testowym.
+
+```{python}
+y_pred = model.predict(X_test)
+```
+
+Pierwsze przewidywania modelu:
+
+```{python}
+y_pred[:10]
+```
+
+Regresja logistyczna może także zwracać prawdopodobieństwa klas.
+
+```{python}
+y_proba = model.predict_proba(X_test)
+y_proba[:5]
+```
+
+Druga kolumna oznacza prawdopodobieństwo klasy `1`, czyli przeżycia.
+
+```{python}
+survival_probability = y_proba[:, 1]
+survival_probability[:10]
+```
+
+## 15. Ocena jakości modelu
+
+Do oceny modelu klasyfikacyjnego używam kilku metryk:
+
+- accuracy,
+- precision,
+- recall,
+- F1-score.
+
+```{python}
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+
+metrics = pd.DataFrame({
+    "Metryka": ["Accuracy", "Precision", "Recall", "F1-score"],
+    "Wynik": [accuracy, precision, recall, f1]
+})
+
+metrics
+```
+
+Interpretacja metryk:
+
+| Metryka | Znaczenie |
+|---|---|
+| Accuracy | Jaki procent wszystkich predykcji był poprawny |
+| Precision | Ile osób przewidzianych jako „przeżył” naprawdę przeżyło |
+| Recall | Ilu pasażerów, którzy naprawdę przeżyli, model wykrył |
+| F1-score | Łączy precision i recall w jedną metrykę |
+
+::: {.note-box}
+W klasyfikacji nie warto patrzeć tylko na accuracy.  
+Przy niezbalansowanych klasach accuracy może wyglądać dobrze, mimo że model słabo wykrywa jedną z klas.
+:::
+
+## 16. Macierz pomyłek
+
+Macierz pomyłek pokazuje, ile przypadków model sklasyfikował poprawnie i błędnie.
+
+```{python}
+cm = confusion_matrix(y_test, y_pred)
+cm
+```
+
+```{python}
+fig, ax = plt.subplots(figsize=(5, 4))
+
+ax.imshow(cm)
+
+ax.set_title("Macierz pomyłek")
+ax.set_xlabel("Predykcja modelu")
+ax.set_ylabel("Wartość prawdziwa")
+
+ax.set_xticks([0, 1])
+ax.set_yticks([0, 1])
+
+ax.set_xticklabels(["Nie przeżył", "Przeżył"])
+ax.set_yticklabels(["Nie przeżył", "Przeżył"])
+
+for i in range(2):
+    for j in range(2):
+        ax.text(j, i, cm[i, j], ha="center", va="center")
+
+plt.show()
+```
+
+W macierzy pomyłek:
+
+- lewy górny róg oznacza osoby, które nie przeżyły i model poprawnie przewidział, że nie przeżyły,
+- prawy dolny róg oznacza osoby, które przeżyły i model poprawnie przewidział, że przeżyły,
+- pozostałe pola oznaczają błędy modelu.
+
+## 17. Raport klasyfikacji
+
+```{python}
+print(classification_report(y_test, y_pred))
+```
+
+Raport klasyfikacji pokazuje metryki osobno dla każdej klasy.
+
+
+## 18. ROC AUC i krzywa ROC
+
+Oprócz podstawowych metryk klasyfikacji sprawdzam także metrykę ROC AUC.
+
+ROC AUC pokazuje, jak dobrze model rozróżnia klasy `0` i `1`.  
+Im bliżej wartości `1`, tym lepiej. Wynik około `0.5` oznacza model zbliżony do losowego zgadywania.
+
+```{python}
+roc_auc = roc_auc_score(y_test, survival_probability)
+roc_auc
+```
+
+```{python}
+fpr, tpr, thresholds = roc_curve(y_test, survival_probability)
+
+plt.figure(figsize=(6, 5))
+plt.plot(fpr, tpr, label=f"ROC AUC = {roc_auc:.3f}")
+plt.plot([0, 1], [0, 1], linestyle="--", label="Model losowy")
+
+plt.title("Krzywa ROC")
+plt.xlabel("False Positive Rate")
+plt.ylabel("True Positive Rate")
+plt.legend()
+plt.show()
+```
+
+::: {.metric-box}
+**ROC AUC** mierzy zdolność modelu do odróżniania pasażerów, którzy przeżyli, od tych, którzy nie przeżyli.  
+W tym projekcie ROC AUC jest dobrym uzupełnieniem accuracy, precision, recall i F1-score.
+:::
+## 19. Interpretacja współczynników modelu
+
+Regresja logistyczna pozwala sprawdzić, które cechy zwiększają lub zmniejszają prawdopodobieństwo klasy `1`, czyli przeżycia.
+
+```{python}
+coefficients = pd.DataFrame({
+    "Cecha": X.columns,
+    "Współczynnik": model.coef_[0]
+}).sort_values(by="Współczynnik", ascending=False)
+
+coefficients
+```
+
+Dodatni współczynnik oznacza, że dana cecha zwiększa szansę przypisania pasażera do klasy `1`.  
+Ujemny współczynnik oznacza, że dana cecha zmniejsza szansę przypisania pasażera do klasy `1`.
+
+```{python}
+plt.figure(figsize=(8, 5))
+plt.barh(coefficients["Cecha"], coefficients["Współczynnik"])
+plt.title("Współczynniki modelu regresji logistycznej")
+plt.xlabel("Wartość współczynnika")
+plt.ylabel("Cecha")
+plt.gca().invert_yaxis()
+plt.show()
+```
+
+::: {.note-box}
+Współczynniki regresji logistycznej nie są bezpośrednio procentami.  
+Pokazują wpływ cech na logarytm szansy przynależności do klasy `1`.
+:::
+
+## 20. Wnioski końcowe
+
+W projekcie zbudowano prosty model regresji logistycznej przewidujący przeżycie pasażera Titanica.
+
+Najważniejsze wnioski:
+
+1. Regresja logistyczna nadaje się do problemów klasyfikacji binarnej.
+2. Dane przed modelowaniem muszą zostać oczyszczone i zakodowane.
+3. Braki w wieku uzupełniono medianą, a braki w porcie wejścia dominantą.
+4. Zmienną `Sex` oraz `Embarked` zakodowano metodą one-hot encoding.
+5. Model oceniono za pomocą accuracy, precision, recall i F1-score.
+6. Sama wartość accuracy nie wystarcza do pełnej oceny klasyfikatora.
+7. Interpretacja współczynników pozwala sprawdzić, które cechy wpływają na predykcję modelu.
+
+## 21. Możliwe dalsze kroki
+
+Projekt można rozbudować o:
+
+- użycie `Pipeline` i `ColumnTransformer`,
+- skalowanie zmiennych numerycznych,
+- walidację krzyżową,
+- wykres ROC i metrykę ROC AUC,
+- porównanie regresji logistycznej z drzewem decyzyjnym,
+- dokładniejszą analizę braków danych,
+- lepsze wykorzystanie kolumny `Cabin`,
+- stworzenie aplikacji Streamlit do przewidywania przeżycia pasażera.

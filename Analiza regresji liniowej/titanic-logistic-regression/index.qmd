@@ -1,0 +1,39 @@
+---
+title: "Regresja logistyczna w praktyce: Titanic"
+subtitle: "Prosty projekt klasyfikacji binarnej w Pythonie"
+author: "Łukasz Pochmara"
+---
+
+::: {.hero-box}
+## Cel projektu
+
+Celem projektu jest zbudowanie prostego modelu regresji logistycznej, który przewiduje, czy pasażer Titanica przeżył katastrofę.
+
+Projekt pokazuje pełny proces: wczytanie danych, przygotowanie cech, trenowanie modelu, ocenę jakości oraz interpretację wyników.
+:::
+
+## 1. O czym jest ten projekt?
+
+Regresja logistyczna jest modelem używanym do klasyfikacji binarnej, czyli do przewidywania jednej z dwóch klas.
+
+W tym projekcie zmienną celu będzie:
+
+```text
+Survived = 0 -> pasażer nie przeżył
+Survived = 1 -> pasażer przeżył
+```
+
+## 2. Import bibliotek
+
+```{python}
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+echo = True
+```
+
+
